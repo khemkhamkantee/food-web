@@ -12,7 +12,7 @@
                     </a>
                 </li>
                 <li> <a class="waves-effect waves-dark" href="addfood-admin.php" aria-expanded="false">
-                        <i class="fa fa-cutlery text-danger" aria-hidden="true"></i><span class="hide-menu text-danger">Add Food</span>
+                        <i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Add Food</span>
                     </a>
                 </li>
                 <li> <a class="waves-effect waves-dark" href="allfood.php" aria-expanded="false">

@@ -40,17 +40,17 @@
 
             <!-- Login Form -->
             <form action="../main/register.php" method="POST" onsubmit="return Validate()" name="vform">
-                <input type="text" id="email" class="fadeIn second" name="email" placeholder="email">
-                <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
-                <input type="password" id="confirm_password" class="fadeIn third" name="confirm_password" placeholder="confirm password">
-                <input type="hidden" id="status" class="fadeIn third" name="status" value="user">
-                <input type="submit" class="fadeIn fourth" value="Resgister">
-
+                <input type="text" id="username" class="fadeIn second" name="username" placeholder="Username">
+                <input type="text" id="email" class="fadeIn second" name="email" placeholder="Email Address">
+                <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password">
+                <input type="password" id="confirm_password" class="fadeIn third" name="confirm_password" placeholder="Confirm Password">
+                <input type="hidden" id="status" class="fadeIn third" name="status" value="User">
+                <input type="submit" class="fadeIn fourth" value="Sign Up">
             </form>
 
             <!-- Remind Passowrd -->
             <div id="formFooter">
-                You have an account? <a class="underlineHover" href="login.php">Login</a><br>
+                You have an account? <a class="underlineHover" href="login.php">Sign In</a><br>
                 <!-- <a class="underlineHover" href="forgot-password.php">Forgot Password?</a> -->
             </div>
 

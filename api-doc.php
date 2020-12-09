@@ -1,20 +1,10 @@
 <?php
-    include 'cache/top-cache.php';
     session_start();
-    include 'main/connectAPI.php';
     if (isset($_SESSION['id'])) {
         $session_login_id = $_SESSION['id'];
         $session_login_email = $_SESSION['email'];
         $session_login_status = $_SESSION['status'];
     }
-
-    $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
-    $limit = 20;
-    $skip = ($page - 1) * $limit;
-    $search = isset($_GET['search']) ? $_GET['search'] : '';
-    $url = 'menu-detail/ingre-name?username=cheasel&api_key=fe1913c8bddda7fbf1b050c92949ef887c97369bb965bc866bcbc9c15d65154e&name='.urlencode($search).'&skip='.$skip.'&limit='.$limit;
-    $resultmenu = getAPI($url);
-
 ?>
 
 <!DOCTYPE html>
@@ -45,88 +35,16 @@
     <link href="css/all.min.css" rel="stylesheet">
 
     <link href="css/show-food.css" rel="stylesheet">
+    <link href="css/api-docs.css" rel="stylesheet">
 </head>
 
 <body>
     <!-- Navigation -->
     <?php include("function/navigation.php"); ?>
 
-    <!-- Masthead -->
-    
-
-    <div class='search-container'>
-        <form action="/projactapi/show-food.php">
-            <div class='search'>
-                <i class="fa fa-search"></i>
-                <input type="text" placeholder="ค้นหาจากชื่อเมนู, วัตถุดิบ" name="search">
-                <input type="submit" value="ค้นหา" name="sumbmit">
-            </div>
-        </form>
+    <div class='api-doc'>
+        <?php include("function/api-documents.php");?>
     </div>
-
-    <section class="container">
-        <div class='show-menu-title'>
-            <?php
-                if( $search != "" ){
-                    echo '<h4> ค้นหา เมนู'. $search .'</h4>';
-                }else{
-                    echo '<h4> เมนูอาหารทั้งหมด </h4>';
-                }
-            ?>
-        </div>
-        <div class="show-menu">
-            <?php
-                foreach( json_decode($resultmenu,true) as $rowmenu){
-            ?>
-                    <div class="menu-box">
-                        <img class="card-img-left" src="<?php echo $rowmenu["image"]; ?>"  width="250" height="250" alt="Card image cap">
-                        <div class='menu-name'>
-                            <h5 class="card-title"> <?php echo '<a href=/projactapi/test.php?id='. (int)$rowmenu['_id'] .'>'. $rowmenu["title"]; ?></a></h5>
-                            <p class="card-text">
-                                <?php 
-                                    if( isset($rowmenu["description"]) ){
-                                        echo $rowmenu["description"];
-                                    }else{
-                                        echo '';
-                                    }
-                                ?>
-                            </p>
-                        </div>
-                    </div>
-            <?php
-                }; 
-            ?>
-        </div>
-    </section>
-    
-    <?php include('function/pagination.php'); ?>
-
-    <!-- BMR Calculator , Congenital disease , Food allergies -->
-    <?php #include("function/another-function.php"); ?>
-
-    <!-- Call to Action -->
-    <!--<section class="call-to-action text-white text-center" style="background-image: url('http://www.healthyhome.asia/wp-content/uploads/2017/11/1-2-2.jpg') ;">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-9 mx-auto">
-                    <h2 class="mb-4">Find your favorite food</h2>
-                </div>
-                <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                    <form action="#">
-                        <div class="form-row input-group">
-                            <div class="col-12 col-md-9 mb-2 mb-md-0">
-                                <input type="text" name="search" class="form-control form-control-lg" placeholder="Searching for...">
-                            </div>
-                            <div class="col-12 col-md-3">
-                                <button type="submit" class="btn btn-block btn-lg btn-primary">Searching!</button>
-                                <a href='#top' id="">Go Top</a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-    </section>-->
 
     <!-- Footer -->
     <footer class="footer bg-light">
@@ -195,8 +113,6 @@
             return false;
         });
     </script>
-
-    <?php include 'cache/bottom-cache.php'; ?>
 </body>
 
 </html>

@@ -1,13 +1,16 @@
 <?php
 session_start();
-include '../main/conectDB.php';
+include '../main/connectAPI.php';
 if (isset($_SESSION['id'])) {
     $session_login_id = $_SESSION['id'];
     $session_login_email = $_SESSION['email'];
 }
 
-$sql1 = "SELECT * FROM user";
-$result1 = mysqli_query($conn, $sql1);
+$url = 'user/all-user?username=cheasel&api_key=fe1913c8bddda7fbf1b050c92949ef887c97369bb965bc866bcbc9c15d65154e';
+$userdata = json_decode(getAPI($url),true);
+$usercount = count($userdata);
+#$sql1 = "SELECT * FROM user";
+#$result1 = mysqli_query($conn, $sql1);
 
 ?>
 
@@ -52,15 +55,16 @@ $result1 = mysqli_query($conn, $sql1);
     <link href="css/pages/dashboard1.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="css/colors/default.css" id="theme" rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
-    <div class="preloader">
+    <!--<div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
             <p class="loader__label">Sharing Thai Food</p>
         </div>
-    </div>
+    </div>-->
     <div id="main-wrapper">
         <?php include("../function/header-admin.php"); ?>
         <?php include("../function/list-admin.php"); ?>
@@ -96,34 +100,34 @@ $result1 = mysqli_query($conn, $sql1);
                                                 <th>#</th>
                                                 <th>Name user</th>
                                                 <th>Email user</th>
-                                                <th>Time update</th>
+                                                <th>Last update</th>
                                                 <th>Option</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
                                             $i = 1;
-                                            while ($row = mysqli_fetch_assoc($result1)) {
-                                                if ($row["email"] != "admin") { ?>
+                                            foreach($userdata as $data) {
+                                                if($data['admin'] != 'True'){ ?>
                                                     <tr>
                                                         <td><?php echo $i ?></td>
                                                         <?php
-                                                        if ($row["fristname"] != "") { ?>
-                                                           <td><?php echo $row["fristname"]; ?></td> 
+                                                        if ($data["name"] != "") { ?>
+                                                           <td><?php echo $data["name"]; ?></td> 
                                                         <?php } else{ ?>
                                                            <td class="text-danger"><?php echo "No profile updated"; ?></td> 
                                                         <?php } ?>
-                                                         ?></td>
-                                                        <td><?php echo $row["email"]; ?></td>
-                                                        <td><?php echo $row["time_update"]; ?></td>
+                                                        </td>
+                                                        <td><?php echo $data["email"]; ?></td>
+                                                        <td><?php echo date('m/d/Y H:i:s', (int) ((int)$data["update"]['$date'] / 1000)) ?></td>
                                                         <td>
                                                             <!-- <a href="update-main-food.php?id=<?= $row["id"]; ?>"><i class="fa fa-pencil-square-o text-success mr-3" style="font-size: 1.25rem;"></a></i> -->
                                                             <a href="../main/delete-admin-user.php?id=<?= $row["id"]; ?>"><i class="fa fa-trash-o text-danger" style="font-size: 1.25rem;"></i></a></td>
                                                         </td>
                                                     </tr>
-                                            <?php $i++;
+                                                <?php $i++;
                                                 }
-                                            } ?>
+                                            } ?> 
                                         </tbody>
                                     </table>
                                 </div>

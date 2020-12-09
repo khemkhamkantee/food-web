@@ -1,16 +1,41 @@
 <?php
-include 'conectDB.php';
+include '../main/connectAPI.php';
 
-$email = $_POST['email'];
-$password = hash("md5", $_POST['password']);
-$confirm_password = $_POST['confirm_password'];
-$status = $_POST['status'];
+$url = 'user/sign-up';
 
+if (isset($_POST['username'])) {
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    #$password = hash("md5", $_POST['password']);
+    $password = $_POST['password'];
+    #$confirm_password = $_POST['confirm_password'];
+    $status = $_POST['status'];
 
+    $data_array =  array(
+        "username" => $username,
+        "email" => $email,
+        "password" => $password,
+        "admin" => $status
+    );
+    $result = json_decode(postAPI($url, json_encode($data_array)),true);
 
-$sql = "INSERT INTO user (id,email,password,status,time_update) VALUES ('','$email', '$password','$status',CURRENT_TIMESTAMP)";
+    #echo $result[0]['email'];
 
-if ($conn->query($sql) === TRUE) {
+    if (isset($result[0]['email'])) {
+        session_start();
+        $_SESSION['id'] = $result[0]["_id"];
+        $_SESSION['email'] = $result[0]["email"];
+        $_SESSION['username'] = $result[0]['username'];
+        $_SESSION['status'] = 'User';
+        header("Location: ../user/dashboard.php");
+    }else {
+        header("Location: ../auth/register.php");
+    }
+}else {
+    header("Location: ../auth/register.php");
+}
+
+/*if ($conn->query($sql) === TRUE) {
     $sqldata = "SELECT * FROM user";
     $result = $conn->query($sqldata);
     if ($result->num_rows > 0) {
@@ -31,4 +56,4 @@ if ($conn->query($sql) === TRUE) {
     }
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
-}
+}*/

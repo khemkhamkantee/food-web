@@ -40,9 +40,9 @@
 
       <!-- Login Form -->
       <form action="../main/login.php" method="POST" onsubmit="return Validate()" name="vformlogin">
-        <input type="text" id="email" class="fadeIn second" name="email" placeholder="login">
-        <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
-        <input type="submit" class="fadeIn fourth" value="Log In">
+        <input type="text" id="email" class="fadeIn second" name="email" placeholder="Email address">
+        <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password">
+        <input type="submit" class="fadeIn fourth" value="Sign in">
       </form>
 
       <!-- Remind Passowrd -->

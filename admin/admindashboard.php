@@ -1,57 +1,65 @@
 <?php
 session_start();
-include '../main/conectDB.php';
+include '../main/connectAPI.php';
 if (isset($_SESSION['id'])) {
     $session_login_id = $_SESSION['id'];
     $session_login_email = $_SESSION['email'];
     $session_login_status = $_SESSION['status'];
-    if ($session_login_status != "admin") {
+    $session_login_username = $_SESSION['username'];
+    if ($session_login_status != "Admin") {
         header("Location: ../auth/login.php");
     }
 
-    $sql1 = "SELECT * FROM user";
-    $result1 = mysqli_query($conn, $sql1);
-    $resultuser = mysqli_query($conn, $sql1);
-    $usercount = 0;
-    while ($temp1 = mysqli_fetch_assoc($result1)) {
-        $usercount++;
-    }
+    $url = 'user/all-user?username=cheasel&api_key=fe1913c8bddda7fbf1b050c92949ef887c97369bb965bc866bcbc9c15d65154e';
+    /*$result1 = mysqli_query($conn, $sql1);
+    $resultuser = mysqli_query($conn, $sql1);*/
+    $userdata = json_decode(getAPI($url),true);
+    $usercount = count($userdata);
 
-    $sql2 = "SELECT * FROM menu";
+    $url = 'menu-detail/total-search-ingre?username=cheasel&api_key=fe1913c8bddda7fbf1b050c92949ef887c97369bb965bc866bcbc9c15d65154e&name=';
+    $menucount = (int) getAPI($url);
+    $url = 'menu-detail/ingre-name?username=cheasel&api_key=fe1913c8bddda7fbf1b050c92949ef887c97369bb965bc866bcbc9c15d65154e&name=&skip=0&limit=5';
+    $menudata = json_decode(getAPI($url),true);
+    /*$sql2 = "SELECT * FROM menu";
     $result2 = mysqli_query($conn, $sql2);
     $sqlmenu = "SELECT * FROM user INNER JOIN menu ON user.id=menu.user_id";
     $resultmenu = mysqli_query($conn, $sqlmenu);
     $menucount = 0;
     while ($temp2 = mysqli_fetch_assoc($result2)) {
         $menucount++;
-    }
+    }*/
 
-    $sql3 = "SELECT * FROM calories";
+    /*$sql3 = "SELECT * FROM calories";
     $result3 = mysqli_query($conn, $sql3);
     $sqlcalories = "SELECT * FROM user INNER JOIN calories ON user.id=calories.user_id";
     $resultcalories = mysqli_query($conn, $sqlcalories);
     $caloriescount = 0;
     while ($temp3 = mysqli_fetch_assoc($result3)) {
         $caloriescount++;
-    }
+    }*/
 
-    $sql4 = "SELECT * FROM medical_problems";
+    /*$sql4 = "SELECT * FROM medical_problems";
     $result4 = mysqli_query($conn, $sql4);
     $sqlmedical_problems = "SELECT * FROM user INNER JOIN medical_problems ON user.id=medical_problems.user_id";
     $resultmedical_problems = mysqli_query($conn, $sqlmedical_problems);
     $medical_problemscount = 0;
     while ($temp4 = mysqli_fetch_assoc($result4)) {
         $medical_problemscount++;
-    }
+    }*/
 
-    $sql5 = "SELECT * FROM food_allergies";
+    $url = 'user/user-id?username=cheasel&api_key=fe1913c8bddda7fbf1b050c92949ef887c97369bb965bc866bcbc9c15d65154e&id='.$session_login_id;
+    $food_allergiesdata = json_decode(getAPI($url),true);
+    $food_allergiescount = count($food_allergiesdata[0]['food_allergy']);
+    /*$sql5 = "SELECT * FROM food_allergies";
     $result5 = mysqli_query($conn, $sql5);
     $sqlfood_allergies = "SELECT * FROM user INNER JOIN food_allergies ON user.id=food_allergies.user_id";
     $resultfood_allergies = mysqli_query($conn, $sqlfood_allergies);
     $food_allergiescount = 0;
     while ($temp5 = mysqli_fetch_assoc($result5)) {
         $food_allergiescount++;
-    }
+    }*/
+}else{
+    header("Location: ../auth/login.php");
 }
 
 ?>
@@ -97,15 +105,16 @@ if (isset($_SESSION['id'])) {
     <link href="css/pages/dashboard1.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="css/colors/default.css" id="theme" rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
-    <div class="preloader">
+    <!--<div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
             <p class="loader__label">Admin</p>
         </div>
-    </div>
+    </div>-->
     <div id="main-wrapper">
         <?php include("../function/header-admin.php"); ?>
         <?php include("../function/list-admin.php"); ?>
@@ -138,26 +147,26 @@ if (isset($_SESSION['id'])) {
                                         <din class="col">
                                             <i class="fa fa-user text-info" style="font-size: 5rem;" aria-hidden="true"></i>
                                             <h5 class=" card-title mt-2">User</h5>
-                                            <h5 class=" card-title mt-2"><?php echo $usercount - 1 ?></h5>
+                                            <h5 class=" card-title mt-2"><?php echo $usercount ?></h5>
                                         </din>
                                         <!-- Food -->
                                         <din class="col">
                                             <i class="fa fa-cutlery text-primary" style="font-size: 5rem;" aria-hidden="true"></i>
-                                            <h5 class=" card-title mt-2">Food</h5>
+                                            <h5 class=" card-title mt-2">All Receipe</h5>
                                             <h5 class=" card-title mt-2"><?php echo $menucount ?></h5>
                                         </din>
                                         <!-- BMR Calculator -->
-                                        <din class="col">
+                                        <!--<din class="col">
                                             <i class="fa fa-calculator text-success" style="font-size: 5rem;" aria-hidden="true"></i>
                                             <h5 class=" card-title mt-2">BMR calulator</h5>
                                             <h5 class=" card-title mt-2"><?php echo $caloriescount ?></h5>
-                                        </din>
+                                        </din>-->
                                         <!-- Medical problems -->
-                                        <din class="col">
+                                        <!--<din class="col">
                                             <i class="fa fa-medkit text-danger" style="font-size: 5rem;" aria-hidden="true"></i>
                                             <h5 class=" card-title mt-2">Medical problems</h5>
                                             <h5 class=" card-title mt-2"><?php echo $medical_problemscount ?></h5>
-                                        </din>
+                                        </din>-->
                                         <!-- Food allergies -->
                                         <din class="col">
                                             <i class="fa fa-ambulance text-warning" style="font-size: 5rem;" aria-hidden="true"></i>
@@ -181,18 +190,20 @@ if (isset($_SESSION['id'])) {
                                         <thead>
                                             <tr>
                                                 <th class="col-8" colspan="2">User Name</th>
-                                                <th class="col-4">time update</th>
+                                                <th class="col-4">Last update</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            while ($rowuser = mysqli_fetch_assoc($resultuser)) {
-                                                if ($rowuser["email"] != "admin") { ?>
+                                            foreach($userdata as $data){
+                                                if( $data['admin'] != 'True' ){?>
                                                     <tr>
-                                                        <td colspan="2"><?php echo $rowuser["email"]; ?></td>
-                                                        <td id="timeupdate"><?php echo $rowuser["time_update"]; ?></td>
+                                                        <td colspan="2"><?php echo $data["username"]; ?></td>
+                                                        <td id="timeupdate"><?php 
+                                                        echo date('m/d/Y H:i:s', (int) ((int)$data["update"]['$date'] / 1000));
+                                                         ?></td>
                                                     </tr>
-                                            <?php }
+                                            <?php    }
                                             } ?>
                                         </tbody>
                                     </table>
@@ -210,21 +221,22 @@ if (isset($_SESSION['id'])) {
                                     <table class="table vm no-th-brd pro-of-month">
                                         <thead>
                                             <tr>
-                                                <th class="col-8" colspan="2">Food Name</th>
+                                                <th class="col-6" >Food Name</th>
                                                 <th class="col-4">time update</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            while ($rowmenu = mysqli_fetch_assoc($resultmenu)) { ?>
+                                            foreach($menudata as $data){?>
                                                 <tr>
-                                                    <td colspan="2">
-                                                        <h6><?php echo $rowmenu["title"]; ?></h6><small class="text-muted"><?php echo $rowmenu["email"]; ?></small>
+                                                    <td>
+                                                        <?php echo $data["title"]; ?>
                                                     </td>
-                                                    <td id="timeupdate"><?php echo $rowmenu["time_update"]; ?></td>
+                                                    <td id="timeupdate">
+                                                        <?php echo $data["update"]; ?>
+                                                    </td>
                                                 </tr>
-                                            <?php
-                                            } ?>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -234,8 +246,7 @@ if (isset($_SESSION['id'])) {
                     <!-- Column -->
 
                 </div>
-                <div class="row">
-                    <!-- Column -->
+                <!--<div class="row">
                     <div class="col-lg-6 col-md-12">
                         <div class="card card-body mailbox">
                             <h5 class="card-title">Latest Update BMR calulator</h5>
@@ -250,25 +261,25 @@ if (isset($_SESSION['id'])) {
                                         </thead>
                                         <tbody>
                                             <?php
-                                            while ($rowcalories = mysqli_fetch_assoc($resultcalories)) { ?>
+                                            #while ($rowcalories = mysqli_fetch_assoc($resultcalories)) { ?>
                                                 <tr>
                                                     <td colspan="2">
-                                                        <h6><?php echo $rowcalories["calories"]; ?></h6><small class="text-muted"><?php echo $rowcalories["email"]; ?></small>
+                                                        <h6><?php #echo $rowcalories["calories"]; ?></h6><small class="text-muted"><?php #echo $rowcalories["email"]; ?></small>
                                                     </td>
 
-                                                    <td class="" id="timeupdate"><?php echo $rowcalories["time_update"]; ?></td>
+                                                    <td class="" id="timeupdate"><?php #echo $rowcalories["time_update"]; ?></td>
                                                 </tr>
                                             <?php
-                                            } ?>
+                                            #} ?>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                     <!-- Column -->
                     <!-- Column -->
-                    <div class="col-lg-6 col-md-12">
+                    <!--<div class="col-lg-6 col-md-12">
                         <div class="card card-body mailbox">
                             <h5 class="card-title">Latest Update Medical problems</h5>
                             <div class="message-center ps ps--theme_default ps--active-y" style="height: 490px" data-ps-id="a045fe3c-cb6e-028e-3a70-8d6ff0d7f6bd">
@@ -282,25 +293,25 @@ if (isset($_SESSION['id'])) {
                                         </thead>
                                         <tbody>
                                             <?php
-                                            while ($rowmedical_problems = mysqli_fetch_assoc($resultmedical_problems)) { ?>
+                                            #while ($rowmedical_problems = mysqli_fetch_assoc($resultmedical_problems)) { ?>
                                                 <tr>
                                                     <td colspan="2">
-                                                        <h6><?php echo $rowmedical_problems["tb_medical_problems"]; ?></h6><small class="text-muted"><?php echo $rowmedical_problems["email"]; ?></small>
+                                                        <h6><?php #echo $rowmedical_problems["tb_medical_problems"]; ?></h6><small class="text-muted"><?php #echo $rowmedical_problems["email"]; ?></small>
                                                     </td>
 
-                                                    <td class="" id="timeupdate"><?php echo $rowmedical_problems["time_update"]; ?></td>
+                                                    <td class="" id="timeupdate"><?php #echo $rowmedical_problems["time_update"]; ?></td>
                                                 </tr>
                                             <?php
-                                            } ?>
+                                            #} ?>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                     <!-- Column -->
 
-                </div>
+                <!--</div> -->
                 <div class="row">
                     <!-- Column -->
                     <div class="col-lg-6 col-md-12">
@@ -312,21 +323,18 @@ if (isset($_SESSION['id'])) {
                                         <thead>
                                             <tr>
                                                 <th class="col-8" colspan="2">Food allergies</th>
-                                                <th class="col-4">time update</th>
+                                                <!--<th class="col-4">time update</th>-->
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            while ($rowfood_allergies = mysqli_fetch_assoc($resultfood_allergies)) { ?>
+                                            foreach($userdata[0]['food_allergy'] as $data){ ?>
                                                 <tr>
                                                     <td colspan="2">
-                                                        <h6><?php echo $rowfood_allergies["tb_food_allergies"]; ?></h6><small class="text-muted"><?php echo $rowfood_allergies["email"]; ?></small>
+                                                        <h6><?php echo $data; ?></h6>
                                                     </td>
-
-                                                    <td class="" id="timeupdate"><?php echo $rowfood_allergies["time_update"]; ?></td>
                                                 </tr>
-                                            <?php
-                                            } ?>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -334,7 +342,6 @@ if (isset($_SESSION['id'])) {
                         </div>
                     </div>
                     <!-- Column -->
-
                 </div>
             </div>
             <footer class="footer" style="padding-top:1rem !important;padding-bottom:1rem !important">

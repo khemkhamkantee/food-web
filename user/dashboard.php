@@ -1,29 +1,31 @@
 <?php
 session_start();
-include '../main/conectDB.php';
+include '../main/connectAPI.php';
 if (isset($_SESSION['id'])) {
     $session_login_id = $_SESSION['id'];
     $session_login_email = $_SESSION['email'];
+    $session_login_username = $_SESSION['username'];
     $session_status = $_SESSION['status'];
 
+    $url = 'menu-detail/user-id?username=cheasel&api_key=fe1913c8bddda7fbf1b050c92949ef887c97369bb965bc866bcbc9c15d65154e&name='.$session_login_id;
+    $menudata = json_decode(getAPI($url),true);
     // เลือกตาราง calories ท้งหมด
-    $sql = "SELECT * FROM menu WHERE user_id=$session_login_id ORDER BY time_update DESC";
-    $result = mysqli_query($conn, $sql);
+    #$sql = "SELECT * FROM menu WHERE user_id=$session_login_id ORDER BY time_update DESC";
+    #$result = mysqli_query($conn, $sql);
 
     // เลือกอันท้ายสุดของตาราง
-    $sql2 = "SELECT * FROM menu ORDER BY user_id=$session_login_id DESC LIMIT 1;";
+    #$sql2 = "SELECT * FROM menu ORDER BY user_id=$session_login_id DESC LIMIT 1;";
     // $sql2 = "SELECT * FROM menu WHERE user_id=$session_login_id ORDER BY time_update DESC LIMIT 1;";
-    $result2 = $conn->query($sql2);
-    while ($row2 = $result2->fetch_assoc()) {
-        $title = $row2["title"];
-        $Additional_explanation = $row2["Additional_explanation"];
-    }
+    #$result2 = $conn->query($sql2);
+    #while ($row2 = $result2->fetch_assoc()) {
+    #    $title = $row2["title"];
+    #    $Additional_explanation = $row2["Additional_explanation"];
+    #}
+}else{
+    header("Location: ../auth/login.php");
 }
 
-
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -65,15 +67,16 @@ if (isset($_SESSION['id'])) {
     <link href="css/pages/dashboard1.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="css/colors/default.css" id="theme" rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
-    <div class="preloader">
+    <!--<div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
             <p class="loader__label">Sharing Thai Food</p>
         </div>
-    </div>
+    </div>-->
     <div id="main-wrapper">
         <?php include("../function/header-user.php"); ?>
         <?php include("../function/list-user.php"); ?>
@@ -104,24 +107,39 @@ if (isset($_SESSION['id'])) {
                                     <table class="table vm no-th-brd pro-of-month">
                                         <thead>
                                             <tr>
-                                                <th class="col-8" colspan="2">Food Name</th>
-                                                <th class="col-4">time update</th>
+                                                <th class="col-8" colspan="2">Name</th>
+                                                <th class="col-4">Latest Update</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         <tbody>
                                             <?php
-                                            $i = 1;
-                                            while ($row = mysqli_fetch_assoc($result)) { ?>
+                                            if ( $menudata != '' ) {
+                                                foreach( $menudata as $result ){
+                                                    #while ($row = mysqli_fetch_assoc($result)) { ?>
+                                                    <tr>
+                                                        <td><?php echo $i; ?></td>
+                                                        <td><?php echo $result["title"]; ?></td>
+                                                        <td><?php echo $result['nutrition']['calories']; ?></td>
+                                                        <td><?php echo $result["date_add"]; ?></td>
+                                                        <td>
+                                                            <a href="../show-food.php?id=<?= $row["id"]; ?>"><i class="fa fa-eye text-success mr-3" style="font-size: 1.25rem;"></a></i>
+                                                            <a href="update-main-food.php?id=<?= $row["id"]; ?>"><i class="fa fa-pencil-square-o text-success mr-3" style="font-size: 1.25rem;"></a></i>
+                                                            <a href="../main/delete-food.php?id=<?= $row["id"]; ?>"><i class="fa fa-trash-o text-danger" style="font-size: 1.25rem;"></i></a></td>
+                                                        </td>
+                                                    </tr>
+                                                <?php $i++;
+                                                } 
+                                            }?>
+                                            <!--foreach($menudata as $row){?>
                                                 <tr>
                                                     <td><span class="round"><img src="../assets/images/users/2.jpg" alt="user" width="50"></span></td>
                                                     <td class="col-8">
-                                                        <h6><?php echo $row["title"]; ?></h6><small class="text-muted">Project Manager</small>
+                                                        <h6><?php #echo $row["title"]; ?></h6><small class="text-muted">Project Manager</small>
                                                     </td>
-                                                    <td id="timeupdate"><?php echo $row["time_update"]; ?></td>
+                                                    <td id="timeupdate"><?php #echo $row["update"]; ?></td>
                                                 </tr>
-                                            <?php $i++;
-                                            } ?>
+                                            <?php #} ?>-->
                                         </tbody>
                                         </tbody>
                                     </table>

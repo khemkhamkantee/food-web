@@ -43,10 +43,10 @@
   <!-- Navigation -->
   <?php include("function/navigation.php"); ?>
   <!-- Masthead -->
-  <?php include("function/search.php"); ?>
+  <?php #include("function/search.php"); ?>
 
   <!-- Icons Grid -->
-  <?php include("function/region.php"); ?>
+  <?php #include("function/region.php"); ?>
   
 
   <!-- Image Showcases -->

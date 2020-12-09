@@ -1,17 +1,26 @@
 <?php
 session_start();
-include '../main/conectDB.php';
+include '../main/connectAPI.php';
 if (isset($_SESSION['id'])) {
+    $session_login_id = $_SESSION['id'];
+    $session_login_email = $_SESSION['email'];
+    $session_login_username = $_SESSION['username'];
+    $session_status = $_SESSION['status'];
+
+    $url = 'menu-detail/user-id?username=cheasel&api_key=fe1913c8bddda7fbf1b050c92949ef887c97369bb965bc866bcbc9c15d65154e&id='.$session_login_id;
+    $data = getAPI($url);
+    $menudata = json_decode($data,true);
+}else{
+    header("Location: ../auth/login.php");
+}
+/*if (isset($_SESSION['id'])) {
     $session_login_id = $_SESSION['id'];
     $session_login_email = $_SESSION['email'];
 
 
     $sql = "SELECT * FROM menu WHERE user_id=$session_login_id";
     $result = mysqli_query($conn, $sql);
-}
-
-
-
+}*/
 ?>
 
 
@@ -58,12 +67,12 @@ if (isset($_SESSION['id'])) {
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
-    <div class="preloader">
+    <!--<div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
             <p class="loader__label">Sharing Thai Food</p>
         </div>
-    </div>
+    </div>-->
     <div id="main-wrapper">
         <?php include("../function/header-user.php"); ?>
         <?php include("../function/list-user.php"); ?>
@@ -109,21 +118,23 @@ if (isset($_SESSION['id'])) {
                                         <tbody>
                                             <?php
                                             $i = 1;
-                                            while ($row = mysqli_fetch_assoc($result)) { ?>
-                                                <tr>
-                                                    <td><?php echo $i ?></td>
-                                                    <td><?php echo $row["title"]; ?></td>
-                                                    <td>100</td>
-                                                    <td><?php echo $row["time_update"]; ?></td>
-                                                    <td>
-                                                        <a href="../show-food.php?id=<?= $row["id"]; ?>"><i class="fa fa-eye text-success mr-3" style="font-size: 1.25rem;"></a></i>
-                                                        <a href="update-main-food.php?id=<?= $row["id"]; ?>"><i class="fa fa-pencil-square-o text-success mr-3" style="font-size: 1.25rem;"></a></i>
-                                                        <a href="../main/delete-food.php?id=<?= $row["id"]; ?>"><i class="fa fa-trash-o text-danger" style="font-size: 1.25rem;"></i></a></td>
-                                                    </td>
-                                                </tr>
-                                            <?php $i++;
-                                            } ?>
-
+                                            if ( $menudata != '' ) {
+                                                foreach( $menudata as $result ){
+                                                    #while ($row = mysqli_fetch_assoc($result)) { ?>
+                                                    <tr>
+                                                        <td><?php echo $i; ?></td>
+                                                        <td><?php echo $result["title"]; ?></td>
+                                                        <td><?php echo $result['nutrition']['calories']; ?></td>
+                                                        <td><?php echo $result["date_add"]; ?></td>
+                                                        <td>
+                                                            <a href="../show-food.php?id=<?= $row["id"]; ?>"><i class="fa fa-eye text-success mr-3" style="font-size: 1.25rem;"></a></i>
+                                                            <a href="update-main-food.php?id=<?= $row["id"]; ?>"><i class="fa fa-pencil-square-o text-success mr-3" style="font-size: 1.25rem;"></a></i>
+                                                            <a href="../main/delete-food.php?id=<?= $row["id"]; ?>"><i class="fa fa-trash-o text-danger" style="font-size: 1.25rem;"></i></a></td>
+                                                        </td>
+                                                    </tr>
+                                                <?php $i++;
+                                                } 
+                                            }?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -184,6 +195,8 @@ if (isset($_SESSION['id'])) {
     <script src="../assets/node_modules/c3-master/c3.min.js"></script>
     <!-- Chart JS -->
     <script src="js/dashboard1.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script>
         // On top

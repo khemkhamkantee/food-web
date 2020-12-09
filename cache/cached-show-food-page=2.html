@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Language" content="th" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/logo-icon-api.png">
+
+    <title>Sharing Thai Food</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="mainstyle/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="mainstyle/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="mainstyle/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="css/landing-page.min.css" rel="stylesheet">
+    <link href="css/all.min.css" rel="stylesheet">
+
+    <link href="css/show-food.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-light bg-light static-top">
+    <div class="top-nav">
+        <ul>
+            <li>
+                <a class="navbar-brand" href="index.php"><i class="fas fa-utensils"></i> Sharing Thai Food</a>
+            </li>
+            <li style='float: right;'>
+                                    <a class="btn btn-primary" href="auth/login.php" disable>Sign In</a>
+                            </li>
+        </ul>
+    </div>
+    <div class='menu-bar'>
+        <ul>
+            <li>
+                <a href='/projactapi/show-food.php'> สูตรอาหาร </a>
+            </li>
+            <li>
+                <a href='/projactapi/api-doc.php'> API </a>  
+            </li>
+        </ul> 
+    </div>
+</nav>
+    <!-- Masthead -->
+    
+
+    <div class='search-container'>
+        <form action="/projactapi/show-food.php">
+            <div class='search'>
+                <i class="fa fa-search"></i>
+                <input type="text" placeholder="ค้นหาจากชื่อเมนู, วัตถุดิบ" name="search">
+                <input type="submit" value="ค้นหา" name="sumbmit">
+            </div>
+        </form>
+    </div>
+
+    <section class="container">
+        <div class='show-menu-title'>
+            <h4> เมนูอาหารทั้งหมด </h4>        </div>
+        <div class="show-menu">
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img.wongnai.com/p/1968x0/2020/05/28/6d4963ca39254695878741fa6b58b7f2.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2912>มาม่าต้มยำพริกเผาหมูสับ</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img.wongnai.com/p/1968x0/2020/06/12/f325055c8f8a4de18eb88497c243dadc.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2911>ชะอมไข่</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img.wongnai.com/p/1968x0/2020/09/11/1f8b3eef2c2b4da1b876457ba353dcca.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2910>ข้าวแมว</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img.wongnai.com/p/1968x0/2020/09/11/1fa76f7cc5004c2ba9c8eb0b471cfc8f.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2909>Pork Lok Lak</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img.wongnai.com/p/1968x0/2020/09/11/5734450f93f5482e8034f86651fc8651.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2908>ต้มข่าไก่ ง่ายมั่กๆ</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img.wongnai.com/p/1968x0/2020/09/12/24e95d0daf9f4e429b13a9b5e238a90e.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2907>ตำหลวงพระบาง แบบไม่ใช้ครก ใช้คลุกเคล้าให้เข้ากัน</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img.wongnai.com/p/1968x0/2020/09/12/8e751ea1fb92401f9094fa7f2226b676.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2906>อกไก่ย่าง ซอสอโวคาโด้  เมนูอาหารคลีน</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img.wongnai.com/p/1968x0/2020/09/12/f9b1dc07cbdd48aaa5c4c2eee91309a1.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2905>Breakfast Non Carb</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img.wongnai.com/p/1968x0/2020/09/12/96b766f93b6f4796abdd187b3bd6b6fd.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2904>ปอเปี๊ยะสดกุ้ง เวียดนาม</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img.wongnai.com/p/1968x0/2020/09/12/8443961e4d67496eba5eb049596c8992.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2903>คัพเค้กฟักทองช็อคชิพน้ำผึ้ง  น้ำตาล เนย</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img.wongnai.com/p/1968x0/2020/09/12/25997715aceb45018966aed5af8cc6ea.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2902>บราวนี่ถั่วแดงไร้แป้ง</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img.wongnai.com/p/1968x0/2020/09/12/5effe3950ca44ae3bf8b959690300e68.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2901>หมูกระเทียม สูตรแม่สอนมา (ลำเอียงว่า)อร่อยที่สุดในโลก</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img.wongnai.com/p/1968x0/2020/09/12/b24e22c87af9434ea6c543bf3c4cb3b4.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2900>นึ่งข้าวเหนียวง่ายๆ ข้าวนุ่ม เป็นเม็ด ไม่แฉะ</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img.wongnai.com/p/1968x0/2020/09/13/881fc2b643574b2a913e362867accf8b.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2899>เต้าหู้ทอดผัดกุยช่าย เมนูอร่อย ทำง่าย ถูกใจคนชอบทานผัก</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img.wongnai.com/p/1968x0/2020/09/13/bb554f0d56fc419c89cb0f75cd232658.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2898>ซุปกิมจิแบบง่ายๆ</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img.wongnai.com/p/1968x0/2020/09/13/626c450c81394fdc85976d038545f911.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2897>มัฟฟินแครอท</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/c790ac968b9e2347/751x532cq70/รูป-หลัก-ของ-สูตร-ฉู่ฉี่กุ้งทอด.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2896>ฉู่ฉี่กุ้งทอด</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/38a4d330b2218d8f/751x532cq70/รูป-หลัก-ของ-สูตร-ปีกไก่ทอดน้ำปลาในต่างแดน.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2895>ปีกไก่ทอดน้ำปลาในต่างแดน</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/1054b59693efb15a/751x532cq70/รูป-หลัก-ของ-สูตร-นม-สตรอว์เบอร์รี่-ทำง่ายที่สุดใน3โลก-ใส่ตามชอบเลยค่ะ.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2894>นม สตรอว์เบอร์รี่ ทำง่ายที่สุดในโลก ใส่ตามชอบเลยค่ะ</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/08c3747ac04331c2/751x532cq70/รูป-หลัก-ของ-สูตร-ice-cream-chocolate-chip.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2893>Ice cream chocolate chip</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                    </div>
+    </section>
+    
+    <div class="pagination"><ul><li><a href="?page=1">Previous</a></li><li><a href="?page=1"> 1 </a></li><li><a href="?page=2">2</a></li><li><a href="?page=3">3</a></li><li><a href="?page=4">4</a></li><li><a href="?page=147">147</a></li><li><a href="?page=3">Next</a></li></ul></div>
+    <!-- BMR Calculator , Congenital disease , Food allergies -->
+    
+    <!-- Call to Action -->
+    <!--<section class="call-to-action text-white text-center" style="background-image: url('http://www.healthyhome.asia/wp-content/uploads/2017/11/1-2-2.jpg') ;">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 mx-auto">
+                    <h2 class="mb-4">Find your favorite food</h2>
+                </div>
+                <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                    <form action="#">
+                        <div class="form-row input-group">
+                            <div class="col-12 col-md-9 mb-2 mb-md-0">
+                                <input type="text" name="search" class="form-control form-control-lg" placeholder="Searching for...">
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <button type="submit" class="btn btn-block btn-lg btn-primary">Searching!</button>
+                                <a href='#top' id="">Go Top</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </section>-->
+
+    <!-- Footer -->
+    <footer class="footer bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                    <ul class="list-inline mb-2">
+                        <li class="list-inline-item">
+                            <a href="#">About</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Contact</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Terms of Use</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Privacy Policy</a>
+                        </li>
+                    </ul>
+                    <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2019. All Rights Reserved.</p>
+                </div>
+                <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item mr-3">
+                            <a href="#">
+                                <i class="fab fa-facebook fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item mr-3">
+                            <a href="#">
+                                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fab fa-instagram fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- On top -->
+    <div class="secondmenu text-right">
+        <a href='#top' id="">
+            <i class="fa fa-angle-up btn btn-block btn-lg " style="width: 50px; height: 43px;" aria-hidden="true"></i>
+        </a>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="mainstyle/jquery/jquery.min.js"></script>
+    <script src="mainstyle/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // On top
+        $("a[href='#top']").click(function() {
+            $("html, body").animate({
+                scrollTop: 0
+            }, "slow");
+            return false;
+        });
+    </script>
+
+    

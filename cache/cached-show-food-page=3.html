@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Language" content="th" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/logo-icon-api.png">
+
+    <title>Sharing Thai Food</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="mainstyle/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="mainstyle/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="mainstyle/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="css/landing-page.min.css" rel="stylesheet">
+    <link href="css/all.min.css" rel="stylesheet">
+
+    <link href="css/show-food.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-light bg-light static-top">
+    <div class="top-nav">
+        <ul>
+            <li>
+                <a class="navbar-brand" href="index.php"><i class="fas fa-utensils"></i> Sharing Thai Food</a>
+            </li>
+            <li style='float: right;'>
+                                    <a class="btn btn-primary" href="auth/login.php" disable>Sign In</a>
+                            </li>
+        </ul>
+    </div>
+    <div class='menu-bar'>
+        <ul>
+            <li>
+                <a href='/projactapi/show-food.php'> สูตรอาหาร </a>
+            </li>
+            <li>
+                <a href='/projactapi/api-doc.php'> API </a>  
+            </li>
+        </ul> 
+    </div>
+</nav>
+    <!-- Masthead -->
+    
+
+    <div class='search-container'>
+        <form action="/projactapi/show-food.php">
+            <div class='search'>
+                <i class="fa fa-search"></i>
+                <input type="text" placeholder="ค้นหาจากชื่อเมนู, วัตถุดิบ" name="search">
+                <input type="submit" value="ค้นหา" name="sumbmit">
+            </div>
+        </form>
+    </div>
+
+    <section class="container">
+        <div class='show-menu-title'>
+            <h4> เมนูอาหารทั้งหมด </h4>        </div>
+        <div class="show-menu">
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/55931593ba12025a/751x532cq70/รูป-หลัก-ของ-สูตร-วุ้นกะทิ-เม็ดแมงลัก.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2892>วุ้นกะทิ เม็ดแมงลัก</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/245bd5a4bcaa01c5/751x532cq70/รูป-หลัก-ของ-สูตร-สะตอผัดพริกขิง.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2891>สะตอผัดพริกขิง</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/e9f35a4fdbb1a380/751x532cq70/รูป-หลัก-ของ-สูตร-แกงไตปลา.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2890>แกงไตปลา</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/cf63ce62a968da2a/751x532cq70/รูป-หลัก-ของ-สูตร-ต้มซุปเปอร์ตีนไก่.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2889>ต้มซุปเปอร์ตีนไก่</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/e6b44db5e66eae18/751x532cq70/รูป-หลัก-ของ-สูตร-กะเพราตับหมู.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2888>กะเพราตับหมู</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/cdeb5bba1b1f4621/751x532cq70/รูป-หลัก-ของ-สูตร-ขนมจีบอกไก่คลีน.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2887>ขนมจีบอกไก่คลีน</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/5af2876527658ee4/751x532cq70/รูป-หลัก-ของ-สูตร-kai-pa-lo.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2886>Kai Pa Lo</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/bddf477f3c80bad0/751x532cq70/รูป-หลัก-ของ-สูตร-หมูสับปั้นก้อนทอด.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2885>หมูสับปั้นก้อนทอด</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/dbc873ca19b7e318/751x532cq70/รูป-หลัก-ของ-สูตร-ก๋วยเตี๋ยวมะเขือเทศผัดไข่แบบน้ำมังสวิรัติ.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2884>ก๋วยเตี๋ยวมะเขือเทศผัดไข่แบบน้ำ(มังสวิรัติ)</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/e2794caba6935de7/751x532cq70/รูป-หลัก-ของ-สูตร-กุ้งผัดพริกขี้หนู🍤🌶🧄🥬.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2883>กุ้งผัดพริกขี้หนู</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/ab6838bff31afb34/751x532cq70/รูป-หลัก-ของ-สูตร-คั่วสะตอใส่-กระดูกหมู.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2882>คั่วสะตอใส่ กระดูกหมู</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/af56009a102764f3/751x532cq70/รูป-หลัก-ของ-สูตร-ฮวกก้วย-发糕-huat-kueh-潮州大发粿.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2881>ฮวกก้วย  Huat Kueh ()</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/a821190e6dde5dba/751x532cq70/รูป-หลัก-ของ-สูตร-ไก่ทอด-k-f-c-🍗🍟🏠-สูตรคลีน-งานมิลเลอร์.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2880>ไก่ทอด K F C  สูตรคลีน (งานมิลเลอร์)</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/5cef105c04039d30/751x532cq70/รูป-หลัก-ของ-สูตร-เกี๊ยวน้ำหมูแดง-สูตรค่อนข้างคลีน💕-เมนูสุดโปรดที่แม้แต่ชายสี่หมี่เกี๊ยว.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2879>เกี๊ยวน้ำหมูแดง (สูตรค่อนข้างคลีน) เมนูสุดโปรดที่แม้แต่ชายสี่หมี่เกี๊ยวก็ทำให้ไม่ได้</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/3eac5025f5558742/751x532cq70/รูป-หลัก-ของ-สูตร-ขนม-power-ball-คลีนๆ-🌰🍯🍑-ต้นทุนต่ำลูกละ-10-บาท-ทำง่ายๆ-ไม่ง้อเตาอบ-วัตถุดิบหาซื้อไ.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2878>ขนม Power ball คลีนๆ  ต้นทุนต่ำลูกละ  บาท ทำง่ายๆ ไม่ง้อเตาอบ วัตถุดิบหาซื้อได้จาก</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/e77c35ba6adcffbc/751x532cq70/รูป-หลัก-ของ-สูตร-ต้มจืดหมูสับเต้าหู้ไข่.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2877>ต้มจืดหมูสับเต้าหู้ไข่</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/494f9026f7085901/751x532cq70/รูป-หลัก-ของ-สูตร-หัวไชโป๊วหวานผัดไข่.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2876>หัวไชโป๊วหวานผัดไข่</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/f7fb0ca8690c1f02/751x532cq70/รูป-หลัก-ของ-สูตร-เห็ดเข็มทองชุบแป้งทอด.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2875>เห็ดเข็มทองชุบแป้งทอด</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/18a09c1013a8e829/751x532cq70/รูป-หลัก-ของ-สูตร-ยำไก่เเซ่บ.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2874>ยำไก่เเซ่บ</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/0f0e77d4e31b2df6/751x532cq70/รูป-หลัก-ของ-สูตร-ไข่อิหยังวะ-iyangwa.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2873>ไข่อิหยังวะ (Iyangwa)</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                    </div>
+    </section>
+    
+    <div class="pagination"><ul><li><a href="?page=2">Previous</a></li><li><a href="?page=1"> 1 </a></li><li><a href="?page=2">2</a></li><li><a href="?page=3">3</a></li><li><a href="?page=4">4</a></li><li><a href="?page=5">5</a></li><li><a href="?page=147">147</a></li><li><a href="?page=4">Next</a></li></ul></div>
+    <!-- BMR Calculator , Congenital disease , Food allergies -->
+    
+    <!-- Call to Action -->
+    <!--<section class="call-to-action text-white text-center" style="background-image: url('http://www.healthyhome.asia/wp-content/uploads/2017/11/1-2-2.jpg') ;">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 mx-auto">
+                    <h2 class="mb-4">Find your favorite food</h2>
+                </div>
+                <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                    <form action="#">
+                        <div class="form-row input-group">
+                            <div class="col-12 col-md-9 mb-2 mb-md-0">
+                                <input type="text" name="search" class="form-control form-control-lg" placeholder="Searching for...">
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <button type="submit" class="btn btn-block btn-lg btn-primary">Searching!</button>
+                                <a href='#top' id="">Go Top</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </section>-->
+
+    <!-- Footer -->
+    <footer class="footer bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                    <ul class="list-inline mb-2">
+                        <li class="list-inline-item">
+                            <a href="#">About</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Contact</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Terms of Use</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Privacy Policy</a>
+                        </li>
+                    </ul>
+                    <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2019. All Rights Reserved.</p>
+                </div>
+                <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item mr-3">
+                            <a href="#">
+                                <i class="fab fa-facebook fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item mr-3">
+                            <a href="#">
+                                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fab fa-instagram fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- On top -->
+    <div class="secondmenu text-right">
+        <a href='#top' id="">
+            <i class="fa fa-angle-up btn btn-block btn-lg " style="width: 50px; height: 43px;" aria-hidden="true"></i>
+        </a>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="mainstyle/jquery/jquery.min.js"></script>
+    <script src="mainstyle/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // On top
+        $("a[href='#top']").click(function() {
+            $("html, body").animate({
+                scrollTop: 0
+            }, "slow");
+            return false;
+        });
+    </script>
+
+    

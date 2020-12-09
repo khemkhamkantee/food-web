@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Language" content="th" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/logo-icon-api.png">
+
+    <title>Sharing Thai Food</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="mainstyle/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="mainstyle/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="mainstyle/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="css/landing-page.min.css" rel="stylesheet">
+    <link href="css/all.min.css" rel="stylesheet">
+
+    <link href="css/show-food.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-light bg-light static-top">
+    <div class="top-nav">
+        <ul>
+            <li>
+                <a class="navbar-brand" href="index.php"><i class="fas fa-utensils"></i> Sharing Thai Food</a>
+            </li>
+            <li style='float: right;'>
+                                    <a class="btn btn-primary" href="auth/login.php" disable>Sign In</a>
+                            </li>
+        </ul>
+    </div>
+    <div class='menu-bar'>
+        <ul>
+            <li>
+                <a href='/projactapi/show-food.php'> สูตรอาหาร </a>
+            </li>
+            <li>
+                <a href='/projactapi/api-doc.php'> API </a>  
+            </li>
+        </ul> 
+    </div>
+</nav>
+    <!-- Masthead -->
+    
+
+    <div class='search-container'>
+        <form action="/projactapi/show-food.php">
+            <div class='search'>
+                <i class="fa fa-search"></i>
+                <input type="text" placeholder="ค้นหาจากชื่อเมนู, วัตถุดิบ" name="search">
+                <input type="submit" value="ค้นหา" name="sumbmit">
+            </div>
+        </form>
+    </div>
+
+    <section class="container">
+        <div class='show-menu-title'>
+            <h4> เมนูอาหารทั้งหมด </h4>        </div>
+        <div class="show-menu">
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/25ccbd582ae9e201/751x532cq70/รูป-หลัก-ของ-สูตร-แกงจืดกะหล่ำปลีตุ๋น🍲-คลีน.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2872>แกงจืดกะหล่ำปลีตุ๋น (คลีน)</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/0437aa6047f5e977/751x532cq70/รูป-หลัก-ของ-สูตร-ขนมปังชุบไข่ทอด.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2871>ขนมปังชุบไข่ทอด</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/d5e5c723ec1723ef/751x532cq70/รูป-หลัก-ของ-สูตร-อกไก่ผัดพริกแกง.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2870>อกไก่ผัดพริกแกง</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/b4c402fced6a9c82/751x532cq70/รูป-หลัก-ของ-สูตร-เค้กส้ม.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2869>เค้กส้ม</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/400be33829a15271/751x532cq70/รูป-หลัก-ของ-สูตร-หอยแมลงภู่ผัดกะเพรา.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2868>หอยแมลงภู่ผัดกะเพรา</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/e64067e2e837dbcd/751x532cq70/รูป-หลัก-ของ-สูตร-2020-37-maghmour-labanon-food.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2867>Maghmour (Labanon food)</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/bf634087211f5c60/751x532cq70/รูป-หลัก-ของ-สูตร-คัลบีจิม-ซี่โครงหมูตุ๋นเกาหลี-ทเวจี-คาลบี้-จิม-돼지-갈비찜-อาหารเกาหลี-korean-braised-pork-short-r.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2866>คัลบีจิม ซี่โครงหมูตุ๋นเกาหลี ทเวจี คาลบี้ จิม ( ) อาหารเกาหลีkorean braised pork short ribs</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/a97c6e5f5bda4abe/751x532cq70/รูป-หลัก-ของ-สูตร-ข้าวผัดกระเทียม.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2865>ข้าวผัดกระเทียม</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/9f386f99a94eb5bc/751x532cq70/รูป-หลัก-ของ-สูตร-ซี่โครงหมูอบซอส-by-หม้อทอดไร้น้ำมัน.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2864>ซี่โครงหมูอบซอส by หม้อทอดไร้น้ำมัน</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/5b4eccb928908ce2/751x532cq70/รูป-หลัก-ของ-สูตร-ข้าวมันไก่-ไม่มัน.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2863>ข้าวมันไก่ ไม่มัน</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/a938caf9212d9bc3/751x532cq70/รูป-หลัก-ของ-สูตร-คุกกี้ธัญพืช-สูตรหวานน้อยอร่อยการันตี-ธัญพืชแน่นมาก.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2862>คุกกี้ธัญพืช (สูตรหวานน้อยอร่อยการันตี) ธัญพืชแน่นมาก</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/7e85f48972f9fc6e/751x532cq70/รูป-หลัก-ของ-สูตร-ผัดต้นอ่อนทานตะวัน🌱-คลีนสุด.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2861>ผัดต้นอ่อนทานตะวัน คลีนสุด</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/0f94454e88e55aaf/751x532cq70/รูป-หลัก-ของ-สูตร-ทาร์ตไข่.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2860>ทาร์ตไข่</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/278efa6ae3ad7760/751x532cq70/รูป-หลัก-ของ-สูตร-healthy-banana-and-coconut-loaf-เฮลตี้เค้กโลฟกล้วยหอมมะพร้าว-❌ไร้เนย-❌ไร้น้ำตาล.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2859>Healthy banana and coconut loaf  เฮลตี้เค้กโลฟกล้วยหอมมะพร้าว ไร้เนย ไร้น้ำตาล</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/395095305d7e10c9/751x532cq70/รูป-หลัก-ของ-สูตร-กุ้งถังทะเลแตกกุ้งถังทะเลถัง-รสชาติเข้มข้นถึงใจ❤-koong-tung-seafood-with-thai-chili-paste.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2858>กุ้งถังทะเลแตกกุ้งถังทะเลถัง (รสชาติเข้มข้นถึงใจ) koong tung seafood with thai chili paste</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/fc300dd7b3c3acff/751x532cq70/รูป-หลัก-ของ-สูตร-คุกกี้โฮลวีทกล้วยหอม-เพื่อสุขภาพ-ไม่ไข่-ไม่เนย-ไม่น้ำมัน-ไม่น้ำตาล.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2857>คุกกี้โฮลวีทกล้วยหอม (เพื่อสุขภาพ) ไม่ไข่ ไม่เนย ไม่น้ำมัน ไม่น้ำตาล</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/f6dc1461bcd75012/751x532cq70/รูป-หลัก-ของ-สูตร-ฝอยทองไข่ไก่แบบง่ายๆ-thai-dessert-foi-thong-golden-eggs-yolk-thread.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2856>ฝอยทองไข่ไก่แบบง่ายๆ Thai Dessert (Foi Thong Golden Eggs Yolk Thread)</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/4c9122bdf85620ac/751x532cq70/รูป-หลัก-ของ-สูตร-หมึกยัดไส้หมูสับทอดกระเทียม.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2855>หมึกยัดไส้หมูสับทอดกระเทียม</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/7a9b9198af7bedfb/751x532cq70/รูป-หลัก-ของ-สูตร-ไข่ปุยเมฆไข่ปุยนุ่นไข่ก้อนเมฆcloud-egg🥚.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2854>ไข่ปุยเมฆไข่ปุยนุ่นไข่ก้อนเมฆ(Cloud Egg)</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                                <div class="menu-box">
+                        <img class="card-img-left" src="https://img-global.cpcdn.com/recipes/f01e04cdc34c6e1b/751x532cq70/รูป-หลัก-ของ-สูตร-คุกกี้เยอรมันรูปหนูrat-german-cookies.jpg"  width="250" height="250" alt="Card image cap">
+                        <div class='menu-name'>
+                            <h5 class="card-title"> <a href=/projactapi/test.php?id=2853>คุกกี้เยอรมันรูปหนูRat German Cookies</a></h5>
+                            <p class="card-text">
+                                                            </p>
+                        </div>
+                    </div>
+                    </div>
+    </section>
+    
+    <div class="pagination"><ul><li><a href="?page=3">Previous</a></li><li><a href="?page=1"> 1 </a></li><li><a href="?page=2">2</a></li><li><a href="?page=3">3</a></li><li><a href="?page=4">4</a></li><li><a href="?page=5">5</a></li><li><a href="?page=6">6</a></li><li><a href="?page=147">147</a></li><li><a href="?page=5">Next</a></li></ul></div>
+    <!-- BMR Calculator , Congenital disease , Food allergies -->
+    
+    <!-- Call to Action -->
+    <!--<section class="call-to-action text-white text-center" style="background-image: url('http://www.healthyhome.asia/wp-content/uploads/2017/11/1-2-2.jpg') ;">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 mx-auto">
+                    <h2 class="mb-4">Find your favorite food</h2>
+                </div>
+                <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                    <form action="#">
+                        <div class="form-row input-group">
+                            <div class="col-12 col-md-9 mb-2 mb-md-0">
+                                <input type="text" name="search" class="form-control form-control-lg" placeholder="Searching for...">
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <button type="submit" class="btn btn-block btn-lg btn-primary">Searching!</button>
+                                <a href='#top' id="">Go Top</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </section>-->
+
+    <!-- Footer -->
+    <footer class="footer bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                    <ul class="list-inline mb-2">
+                        <li class="list-inline-item">
+                            <a href="#">About</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Contact</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Terms of Use</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Privacy Policy</a>
+                        </li>
+                    </ul>
+                    <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2019. All Rights Reserved.</p>
+                </div>
+                <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item mr-3">
+                            <a href="#">
+                                <i class="fab fa-facebook fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item mr-3">
+                            <a href="#">
+                                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fab fa-instagram fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- On top -->
+    <div class="secondmenu text-right">
+        <a href='#top' id="">
+            <i class="fa fa-angle-up btn btn-block btn-lg " style="width: 50px; height: 43px;" aria-hidden="true"></i>
+        </a>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="mainstyle/jquery/jquery.min.js"></script>
+    <script src="mainstyle/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // On top
+        $("a[href='#top']").click(function() {
+            $("html, body").animate({
+                scrollTop: 0
+            }, "slow");
+            return false;
+        });
+    </script>
+
+    

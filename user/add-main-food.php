@@ -3,8 +3,10 @@ session_start();
 if (isset($_SESSION['id'])) {
     $session_login_id = $_SESSION['id'];
     $session_login_email = $_SESSION['email'];
+    $session_login_username = $_SESSION['username'];
+    $session_status = $_SESSION['status'];
 }
-
+$total_ing = 1;
 ?>
 
 
@@ -48,15 +50,17 @@ if (isset($_SESSION['id'])) {
     <link href="css/pages/dashboard1.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="css/colors/default.css" id="theme" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
-    <div class="preloader">
+    <!--<div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
             <p class="loader__label">Sharing Thai Food</p>
         </div>
-    </div>
+    </div>-->
     <div id="main-wrapper">
         <?php include("../function/header-user.php"); ?>
         <?php include("../function/list-user.php"); ?>
@@ -114,7 +118,7 @@ if (isset($_SESSION['id'])) {
                                             <input type="text" name="serve" placeholder="" class="form-control form-control-line">
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <!--<div class="form-group">
                                         <label class="col-sm-12">Select region</label>
                                         <div class="col-sm-12">
                                             <select name="region" class="form-control form-control-line">
@@ -125,51 +129,30 @@ if (isset($_SESSION['id'])) {
                                                 <option value="Central Region Food">Central Region Food</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div>-->
+                                    <label class="col-md-12">Ingredient</label>
                                     <div class="form-group">
-                                        <label class="col-md-12">Ingredient</label>
-
                                         <div class="row ml-1 mr-1">
-
-                                            <div class="col-md-7" id="Ingredient">
-                                                <input name="nameIngredient1" type="text" placeholder="Carrot" class="form-control form-control-line">
-                                                <input name="nameIngredient2" type="text" placeholder="Carrot" class="form-control form-control-line">
-                                                <input name="nameIngredient3" type="text" placeholder="Carrot" class="form-control form-control-line">
+                                        <div class="col-md-7" id="Ingredient">
+                                                <input name="Ingredient[0]" id="Ingredient[0]" type="text" placeholder="Carrot" class="form-control form-control-line">
                                             </div>
                                             <div class="col-md-3" id="value">
-                                                <input name="valueIngre1" type="text" placeholder="100" class="form-control form-control-line">
-                                                <input name="valueIngre2" type="text" placeholder="100" class="form-control form-control-line">
-                                                <input name="valueIngre3" type="text" placeholder="100" class="form-control form-control-line">
+                                                <input name="valueIngre[0]" id="valueIngre[0]" type="text" placeholder="100" class="form-control form-control-line">
                                             </div>
                                             <div class="col-md-2" id="unit">
-                                                <select name="unit1" class="form-control form-control-line">
-                                                    <option value="g">g</option>
-                                                    <option value="gk">gk</option>
-                                                </select>
-                                                <select name="unit2" class="form-control form-control-line">
-                                                    <option value="g">g</option>
-                                                    <option value="gk">gk</option>
-                                                </select>
-                                                <select name="unit3" class="form-control form-control-line">
-                                                    <option value="g">g</option>
-                                                    <option value="gk">gk</option>
-                                                </select>
+                                                <input name="unitIngre[0]" id="unitIngre[0]" type="text" placeholder="กรัม" class="form-control form-control-line">
                                             </div>
-                                            <button onclick="addIngredient()" id="get" type="button" class="btn btn-danger btn-block"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
                                         </div>
+                                        <button onclick="addIngredient()" id="get" type="button" class="btn btn-danger btn-block"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Preparation</label>
                                         <div class="row ml-1 mr-1">
                                             <div class="col-md-1" id="number">
-                                                <input name="numberProcess1" type="text" value="1" class="form-control form-control-line">
-                                                <input name="numberProcess2" type="text" value="2" class="form-control form-control-line">
-                                                <input name="numberProcess3" type="text" value="3" class="form-control form-control-line">
+                                                <input name="numberProcess" type="text" value="1" class="form-control form-control-line">
                                             </div>
                                             <div class="col-md-11" id="process">
-                                                <input name="process1" type="text" placeholder="bra bra bra bra " class="form-control form-control-line">
-                                                <input name="process2" type="text" placeholder="bra bra bra bra " class="form-control form-control-line">
-                                                <input name="process3" type="text" placeholder="bra bra bra bra " class="form-control form-control-line">
+                                                <input name="process[0]" id="process[0]" type="text" placeholder="bra bra bra bra " class="form-control form-control-line">
                                             </div>
                                             <button onclick="addProcess()" id="get" type="button" class="btn btn-danger btn-block"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
                                         </div>
@@ -227,8 +210,8 @@ if (isset($_SESSION['id'])) {
     <script src="js/dashboard1.js"></script>
 
     <script>
-        var newvalue = 3;
-        var numIngre = 3;
+        var numProcess = 0;
+        var numIngre = 0;
 
         function readURL(input) {
             if (input.files && input.files[0]) {
@@ -252,33 +235,29 @@ if (isset($_SESSION['id'])) {
             var value = '';
             var unit = '';
             var ci = '';
-            Ingre += '<input name="nameIngredient' + [numIngre] + '" type="text" placeholder="Carrot" class="form-control form-control-line">';
+            Ingre += '<input name="Ingredient[' + numIngre + ']" id="Ingredient[' + numIngre + ']" type="text" placeholder="Carrot" class="form-control form-control-line">';
             $("#Ingredient").append(Ingre);
-            value += '<input name="valueIngre' + [numIngre] + '" type="text" placeholder="100" class="form-control form-control-line">';
+            value += '<input name="valueIngre[' + numIngre + ']" id="valueIngre[' + numIngre + ']" type="text" placeholder="100" class="form-control form-control-line">';
             $("#value").append(value);
-            unit += '<select name="unit' + [numIngre] + '" class="form-control form-control-line"><option value="g">g</option><option value="gk">gk</option></select>';
+            unit += '<input name="unitIngre[' + numIngre + ']" id="unitIngre[' + numIngre + ']" type="text" placeholder="กรัม" class="form-control form-control-line">';
             $("#unit").append(unit);
-
             ci += '<input name="countPreparation" type="hidden" value="' + [numIngre] + '" class="form-control form-control-line">';
             $("#COUNTTNGRE").append(ci);
-
         }
 
-
-
-
         function addProcess() {
-            newvalue++;
+            numProcess++;
             var number = '';
             var process = '';
             var ci = '';
-            number += '<input type="text" name="numberProcess' + [newvalue] + '" value="' + newvalue + '" class="form-control form-control-line">';
+            number += '<input type="text" name="numberProcess' + [numProcess] + '" value="' + [numProcess + 1] + '" class="form-control form-control-line">';
             $("#number").append(number);
-            process += ' <input name="process' + [newvalue] + '" type="text" placeholder="bra bra bra bra " class="form-control form-control-line">';
+            process += ' <input name="process[' + [numProcess] + ']" id="process[' + numProcess + ']" type="text" placeholder="bra bra bra bra " class="form-control form-control-line">';
             $("#process").append(process);
             ci += '<input name="countIngredient" type="hidden" value="' + [numIngre] + '" class="form-control form-control-line">';
             $("#COUNTTNGRE").append(ci);
         }
+
         // On top
         $("a[href='#top']").click(function() {
             $("html, body").animate({

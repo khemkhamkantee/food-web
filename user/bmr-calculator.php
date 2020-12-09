@@ -1,7 +1,27 @@
 <?php
 session_start();
-include '../main/conectDB.php';
+include '../main/connectAPI.php';
 if (isset($_SESSION['id'])) {
+    $session_login_id = $_SESSION['id'];
+    $session_login_email = $_SESSION['email'];
+    $session_login_username = $_SESSION['username'];
+    $session_status = $_SESSION['status'];
+    $url = 'user/user-id?username=cheasel&api_key=fe1913c8bddda7fbf1b050c92949ef887c97369bb965bc866bcbc9c15d65154e&id='.$session_login_id;
+    #$sql = "SELECT * FROM user WHERE id=$session_login_id";
+    $result = json_decode(getAPI($url),true);
+    if ( isset($result[0]['email']) ) {
+        $email = $result[0]['email'];
+        $fileimage = $result[0]["image"];
+        $firstname = $result[0]["name"];
+        $lastname = $result[0]["surname"];
+        $age = $result[0]["age"];
+        $height = $result[0]["height"];
+        $weight = $result[0]["weight"];
+        $allergens = $result[0]['food_allergy'];
+        $gender = '';
+    }
+}
+/*if (isset($_SESSION['id'])) {
     $session_login_id = $_SESSION['id'];
     $session_login_email = $_SESSION['email'];
     $sql = "SELECT * FROM user WHERE id=$session_login_id";
@@ -21,7 +41,7 @@ if (isset($_SESSION['id'])) {
     while ($row3 = $result3->fetch_assoc()) {
         $calories_last = $row3["calories"];
     }
-}
+}*/
 
 ?>
 
@@ -69,12 +89,12 @@ if (isset($_SESSION['id'])) {
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
-    <div class="preloader">
+    <!--<div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
             <p class="loader__label">Sharing Thai Food</p>
         </div>
-    </div>
+    </div>-->
     <div id="main-wrapper">
         <?php include("../function/header-user.php"); ?>
         <?php include("../function/list-user.php"); ?>
@@ -95,10 +115,8 @@ if (isset($_SESSION['id'])) {
                             <li class="breadcrumb-item active">BMR Calculator</li>
                         </ol>
                     </div>
-
-                </div>
-
-                <form action="../main/processCal.php" method="POST" onsubmit="return Validate()" name="vform">
+                </div><!-- ../main/processCal.php -->
+                <form action="" method="POST" onsubmit="return Validate()" name="vform">
                     <input name="iduser" type="hidden" value="<?php echo $session_login_id ?>">
                     <div class="row">
                         <!-- Column -->
@@ -142,7 +160,7 @@ if (isset($_SESSION['id'])) {
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <button class="btn btn-success">Process</button>
+                                            <button name='process' onclick="calculate()" class="btn btn-success">Process</button>
                                         </div>
                                     </div>
                                 </div>
@@ -162,7 +180,7 @@ if (isset($_SESSION['id'])) {
 
                                                 <span style="margin-top: 12.5px; height: 225px; width: 225px; background-color: #FFFFFF; border-radius: 50%; display: inline-block;">
                                                     <br><br><br><br>
-                                                    <h1 class="mt-2" style="font-size: 60px"><?php echo $calories_last;  ?></h1>
+                                                    <h1 id='bmr' class="mt-2" style="font-size: 60px"><?php echo '1000';  ?></h1>
                                                     <h4>Kilo calories</h4>
                                                 </span>
                                             </span>
@@ -202,15 +220,8 @@ if (isset($_SESSION['id'])) {
                                             while ($row2 = $result2->fetch_assoc()) { ?>
                                                 <tr>
                                                     <td><?php echo $i ?></td>
-                                                    <td><?php echo $row2["calories"]; ?></td>
-                                                    <td><?php
-                                                        if ($row2["gender"] == "male") {
-                                                            echo "ชาย";
-                                                        } elseif ($row2["gender"] == "female") {
-                                                            echo "หญิง";
-                                                        } ?>
-                                                    </td>
-                                                    <td><?php echo $row2["time_update"]; ?></td>
+                                                    <td><?php #echo $row2["calories"]; ?></td>
+                                                    <td><?php #echo $row2["time_update"]; ?></td>
                                                     <td>
                                                         <a href="../main/delete-calculator.php?id=<?= $row2["id"]; ?>"><i class="fa fa-trash-o text-danger" style="font-size: 1.25rem;"></i></a></td>
                                                     </td>
@@ -282,6 +293,7 @@ if (isset($_SESSION['id'])) {
 
     <script type="text/javascript">
         //GETTING ALL INPUT TEXT OPJECTS
+        var gender = document.forms['vform']['gender'];
         var height = document.forms["vform"]["height"];
         var weight = document.forms["vform"]["weight"];
         var age = document.forms["vform"]["age"];
@@ -328,6 +340,13 @@ if (isset($_SESSION['id'])) {
                 return true;
             }
 
+        }
+
+        function calculate() {
+            if ( gender == 'male' ){
+                document.getElementById("bmr").innerHTML = ;
+            }
+            
         }
     </script>
 

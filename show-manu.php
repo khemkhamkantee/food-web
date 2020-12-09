@@ -6,7 +6,7 @@ if (isset($_SESSION['id'])) {
   $session_login_email = $_SESSION['email'];
   $session_login_status = $_SESSION['status'];
 }
-$idfood = $_GET['id'];
+#$idfood = $_GET['id'];
 
 if ($idfood == "1") {
   $sqlmenu1 = "SELECT * FROM menu WHERE region='North Food'";
