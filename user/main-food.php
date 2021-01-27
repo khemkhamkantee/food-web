@@ -51,19 +51,22 @@ if (isset($_SESSION['id'])) {
     <link href="../css/all.min.css" rel="stylesheet">
 
     <!-- Bootstrap Core CSS -->
-    <link href="../assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+    <!--<link href="../assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">-->
     <!-- This page CSS -->
     <!-- chartist CSS -->
-    <link href="../assets/node_modules/morrisjs/morris.css" rel="stylesheet">
+    <!--<link href="../assets/node_modules/morrisjs/morris.css" rel="stylesheet">-->
     <!--c3 CSS -->
-    <link href="../assets/node_modules/c3-master/c3.min.css" rel="stylesheet">
+    <!--<link href="../assets/node_modules/c3-master/c3.min.css" rel="stylesheet">-->
+
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
     <!-- Dashboard 1 Page CSS -->
     <link href="css/pages/dashboard1.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="css/colors/default.css" id="theme" rel="stylesheet">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
@@ -87,10 +90,10 @@ if (isset($_SESSION['id'])) {
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
-                        <h3 class="text-themecolor">Main Food</h3>
+                        <h3 class="text-themecolor">Your Recipe</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Main Food</li>
+                            <li class="breadcrumb-item active">Your Recipe</li>
                         </ol>
                     </div>
                     <div class="col-md-7 align-self-center">
@@ -102,16 +105,17 @@ if (isset($_SESSION['id'])) {
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Main Food</h4>
-                                <h6 class="card-subtitle">Add Main Food</h6>
+                                <h4 class="card-title">Recipe</h4>
+                                <h6 class="card-subtitle">Manage Recipe</h6>
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
                                                 <th>Food Name</th>
-                                                <th>Calories</th>
-                                                <th>First day update</th>
+                                                <th>Calories (kcal)</th>
+                                                <th>Create at</th>
+                                                <th>Update at</th>
                                                 <th>Option</th>
                                             </tr>
                                         </thead>
@@ -124,12 +128,12 @@ if (isset($_SESSION['id'])) {
                                                     <tr>
                                                         <td><?php echo $i; ?></td>
                                                         <td><?php echo $result["title"]; ?></td>
-                                                        <td><?php echo $result['nutrition']['calories']; ?></td>
-                                                        <td><?php echo $result["date_add"]; ?></td>
+                                                        <td><?php echo number_format((float)$result['nutrition']['calories']['quantity']/$result['serve'], 2, '.', ''); ?></td>
+                                                        <td><?php echo date('m/d/Y H:i:s', (int) ((int)$result["date_add"]['$date'] / 1000)); ?></td>
+                                                        <td><?php echo date('m/d/Y H:i:s', (int) ((int)$result["update"]['$date'] / 1000)); ?></td>
                                                         <td>
-                                                            <a href="../show-food.php?id=<?= $row["id"]; ?>"><i class="fa fa-eye text-success mr-3" style="font-size: 1.25rem;"></a></i>
-                                                            <a href="update-main-food.php?id=<?= $row["id"]; ?>"><i class="fa fa-pencil-square-o text-success mr-3" style="font-size: 1.25rem;"></a></i>
-                                                            <a href="../main/delete-food.php?id=<?= $row["id"]; ?>"><i class="fa fa-trash-o text-danger" style="font-size: 1.25rem;"></i></a></td>
+                                                            <a href="../main/edit-food.php?id=<?php echo $result["_id"]; ?>"><i class="fa fa-pencil-square-o text-success mr-3" style="font-size: 1.25rem;"></i></a>
+                                                            <a href="../function/delete-food.php?id=<?php echo $result["_id"]; ?>"><i class="fa fa-trash-o text-danger" style="font-size: 1.25rem;"></i></a>
                                                         </td>
                                                     </tr>
                                                 <?php $i++;
@@ -169,13 +173,13 @@ if (isset($_SESSION['id'])) {
     </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="mainstyle/jquery/jquery.min.js"></script>
-    <script src="mainstyle/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../mainstyle/jquery/jquery.min.js"></script>
+    <script src="../mainstyle/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script src="../assets/node_modules/jquery/jquery.min.js"></script>
+    <!--<script src="../assets/node_modules/jquery/jquery.min.js"></script>-->
     <!-- Bootstrap popper Core JavaScript -->
-    <script src="../assets/node_modules/bootstrap/js/popper.min.js"></script>
-    <script src="../assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
+    <!--<script src="../assets/node_modules/bootstrap/js/popper.min.js"></script>
+    <script src="../assets/node_modules/bootstrap/js/bootstrap.min.js"></script>-->
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="js/perfect-scrollbar.jquery.min.js"></script>
     <!--Wave Effects -->
@@ -188,15 +192,14 @@ if (isset($_SESSION['id'])) {
     <!-- This page plugins -->
     <!-- ============================================================== -->
     <!--morris JavaScript -->
-    <script src="../assets/node_modules/raphael/raphael-min.js"></script>
-    <script src="../assets/node_modules/morrisjs/morris.min.js"></script>
+    <!--morris JavaScript -->
+    <!--<script src="../assets/node_modules/raphael/raphael-min.js"></script>
+    <script src="../assets/node_modules/morrisjs/morris.min.js"></script>-->
     <!--c3 JavaScript -->
-    <script src="../assets/node_modules/d3/d3.min.js"></script>
-    <script src="../assets/node_modules/c3-master/c3.min.js"></script>
+    <!--<script src="../assets/node_modules/d3/d3.min.js"></script>
+    <script src="../assets/node_modules/c3-master/c3.min.js"></script>-->
     <!-- Chart JS -->
-    <script src="js/dashboard1.js"></script>
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--<script src="js/dashboard1.js"></script>-->
 
     <script>
         // On top

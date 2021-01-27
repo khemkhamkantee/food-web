@@ -5,22 +5,20 @@ if (isset($_SESSION['id'])) {
     $session_login_id = $_SESSION['id'];
     $session_login_email = $_SESSION['email'];
     $session_login_username = $_SESSION['username'];
-    $session_status = $_SESSION['status'];
+    $session_login_status = $_SESSION['status'];
+    if ($session_login_status != "User") {
+        header("Location: ../auth/login.php");
+    }
 
-    $url = 'menu-detail/user-id?username=cheasel&api_key=fe1913c8bddda7fbf1b050c92949ef887c97369bb965bc866bcbc9c15d65154e&name='.$session_login_id;
+    $url = 'menu-detail/user-id?username=cheasel&api_key=fe1913c8bddda7fbf1b050c92949ef887c97369bb965bc866bcbc9c15d65154e&id='.$session_login_id;
     $menudata = json_decode(getAPI($url),true);
-    // เลือกตาราง calories ท้งหมด
-    #$sql = "SELECT * FROM menu WHERE user_id=$session_login_id ORDER BY time_update DESC";
-    #$result = mysqli_query($conn, $sql);
-
-    // เลือกอันท้ายสุดของตาราง
-    #$sql2 = "SELECT * FROM menu ORDER BY user_id=$session_login_id DESC LIMIT 1;";
-    // $sql2 = "SELECT * FROM menu WHERE user_id=$session_login_id ORDER BY time_update DESC LIMIT 1;";
-    #$result2 = $conn->query($sql2);
-    #while ($row2 = $result2->fetch_assoc()) {
-    #    $title = $row2["title"];
-    #    $Additional_explanation = $row2["Additional_explanation"];
-    #}
+    
+    $url = 'user/user-id?username=cheasel&api_key=fe1913c8bddda7fbf1b050c92949ef887c97369bb965bc866bcbc9c15d65154e&id='.$session_login_id;
+    $result = json_decode(getAPI($url),true);
+    $age = $result[0]["age"];
+    $gender = $result[0]["gender"];     // male = 1 , female = 2
+    $height = $result[0]["height"];
+    $weight = $result[0]["weight"];
 }else{
     header("Location: ../auth/login.php");
 }
@@ -54,13 +52,14 @@ if (isset($_SESSION['id'])) {
     <link href="../css/all.min.css" rel="stylesheet">
 
     <!-- Bootstrap Core CSS -->
-    <link href="../assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+    <!--<link href="../assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">-->
     <!-- This page CSS -->
     <!-- chartist CSS -->
-    <link href="../assets/node_modules/morrisjs/morris.css" rel="stylesheet">
+    <!--<link href="../assets/node_modules/morrisjs/morris.css" rel="stylesheet">-->
     <!--c3 CSS -->
-    <link href="../assets/node_modules/c3-master/c3.min.css" rel="stylesheet">
+    <!--<link href="../assets/node_modules/c3-master/c3.min.css" rel="stylesheet">-->
+
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
     <!-- Dashboard 1 Page CSS -->
@@ -99,34 +98,30 @@ if (isset($_SESSION['id'])) {
                 </div>
                 <div class="row">
                     <!-- Column -->
-                    <div class="col-lg-8 col-md-12">
-                        <div class="card card-body mailbox">
+                    <div class="col-lg-7" >
+                        <div class="card card-body mailbox" style="min-height: 470px">
                             <h5 class="card-title">Latest Update Food</h5>
-                            <div class="message-center ps ps--theme_default ps--active-y" style="height: 490px" data-ps-id="a045fe3c-cb6e-028e-3a70-8d6ff0d7f6bd">
+                            <div class="message-center ps ps--theme_default ps--active-y" data-ps-id="a045fe3c-cb6e-028e-3a70-8d6ff0d7f6bd">
                                 <div class="table-responsive m-t-20 no-wrap">
                                     <table class="table vm no-th-brd pro-of-month">
                                         <thead>
                                             <tr>
-                                                <th class="col-8" colspan="2">Name</th>
-                                                <th class="col-4">Latest Update</th>
+                                                <th>#</th>
+                                                <th>Food Name</th>
+                                                <th>Latest Update</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         <tbody>
                                             <?php
+                                            $i = 1;
                                             if ( $menudata != '' ) {
                                                 foreach( $menudata as $result ){
                                                     #while ($row = mysqli_fetch_assoc($result)) { ?>
                                                     <tr>
                                                         <td><?php echo $i; ?></td>
                                                         <td><?php echo $result["title"]; ?></td>
-                                                        <td><?php echo $result['nutrition']['calories']; ?></td>
-                                                        <td><?php echo $result["date_add"]; ?></td>
-                                                        <td>
-                                                            <a href="../show-food.php?id=<?= $row["id"]; ?>"><i class="fa fa-eye text-success mr-3" style="font-size: 1.25rem;"></a></i>
-                                                            <a href="update-main-food.php?id=<?= $row["id"]; ?>"><i class="fa fa-pencil-square-o text-success mr-3" style="font-size: 1.25rem;"></a></i>
-                                                            <a href="../main/delete-food.php?id=<?= $row["id"]; ?>"><i class="fa fa-trash-o text-danger" style="font-size: 1.25rem;"></i></a></td>
-                                                        </td>
+                                                        <td><?php echo date('m/d/Y H:i:s', (int) ((int)$result["update"]['$date'] / 1000)); ?></td>
                                                     </tr>
                                                 <?php $i++;
                                                 } 
@@ -148,18 +143,59 @@ if (isset($_SESSION['id'])) {
                         </div>
                     </div>
                     <!-- Column -->
+                    <div class="col-lg-5" >
+                        <div class="card" style="min-height: 470px">
+                            <div class="card-body">
+                                <center>
+                                    <div class="m-b-30 no-block">
+                                        <h6 class="card-title m-b-0 align-self-center">Minimum calories needed in daily life.</h6>
+                                    </div>
+                                </center>
+                                <div style="height:290px; width:100%;">
+                                    <center class="m-t-30">
+                                        <span style="height: 260px; width: 260px; background-color: rgb(36, 210, 181); border-radius: 50%; display: inline-block;">
+                                            <span style="margin-top: 10px; height: 240px; width: 240px; background-color: #FFFFFF; border-radius: 50%; display: inline-block;">
+                                                <br><br><br><br>
+                                                <h1 id='bmr' class="mt-2" style="font-size: 60px">
+                                                <?php 
+                                                    if ( $height != '' and $weight != '' and $age != '' ){
+                                                        if ( $gender == '1' ){
+                                                            $bmr = 66.47 + (13.75 * $weight) + (5.003 * $height) - (6.755 * $age);
+                                                            echo number_format((float)$bmr, 2, '.', '');
+                                                        }else{
+                                                            $bmr = 655.1 + (9.563 * $weight) + (1.85 * $height) - (4.676 * $age);
+                                                            echo number_format((float)$bmr, 2, '.', '');
+                                                        }
+                                                    }else{
+                                                        echo '0';
+                                                    };  
+                                                ?>
+                                                </h1>
+                                                <h4>Kilo calories</h4>
+                                            </span>
+                                        </span>
+                                    </center>
+                                </div>
+                                <center>
+                                    <div class="m-b-30 no-block">
+                                        <h6 class="card-title m-b-0 align-self-center text-danger">Latest calorie information.</h6>
+                                    </div>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Column -->
-                    <div class="col-lg-4">
+                    <!--<div class="col-lg-4">
                         <div class="card">
                             <div class="up-img" style="background-image:url(../img/Fried-rice.jpg)"></div>
                             <div class="card-body">
                                 <h5 class=" card-title">Latest update</h5>
-                                <span class="label label-info label-rounded"><?php echo $title ?></span>
-                                <p class="m-b-0 m-t-20"><?php echo $Additional_explanation ?>
+                                <span class="label label-info label-rounded"><?php //echo $title ?></span>
+                                <p class="m-b-0 m-t-20"><?php //echo $Additional_explanation ?>
                                 </p>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
             <footer class="footer" style="padding-top:1rem !important;padding-bottom:1rem !important">
@@ -176,13 +212,13 @@ if (isset($_SESSION['id'])) {
     </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="mainstyle/jquery/jquery.min.js"></script>
-    <script src="mainstyle/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../mainstyle/jquery/jquery.min.js"></script>
+    <script src="../mainstyle/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script src="../assets/node_modules/jquery/jquery.min.js"></script>
+    <!--<script src="../assets/node_modules/jquery/jquery.min.js"></script>-->
     <!-- Bootstrap popper Core JavaScript -->
-    <script src="../assets/node_modules/bootstrap/js/popper.min.js"></script>
-    <script src="../assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
+    <!--<script src="../assets/node_modules/bootstrap/js/popper.min.js"></script>
+    <script src="../assets/node_modules/bootstrap/js/bootstrap.min.js"></script>-->
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="js/perfect-scrollbar.jquery.min.js"></script>
     <!--Wave Effects -->
@@ -195,13 +231,13 @@ if (isset($_SESSION['id'])) {
     <!-- This page plugins -->
     <!-- ============================================================== -->
     <!--morris JavaScript -->
-    <script src="../assets/node_modules/raphael/raphael-min.js"></script>
-    <script src="../assets/node_modules/morrisjs/morris.min.js"></script>
+    <!--<script src="../assets/node_modules/raphael/raphael-min.js"></script>
+    <script src="../assets/node_modules/morrisjs/morris.min.js"></script>-->
     <!--c3 JavaScript -->
-    <script src="../assets/node_modules/d3/d3.min.js"></script>
-    <script src="../assets/node_modules/c3-master/c3.min.js"></script>
+    <!--<script src="../assets/node_modules/d3/d3.min.js"></script>
+    <script src="../assets/node_modules/c3-master/c3.min.js"></script>-->
     <!-- Chart JS -->
-    <script src="js/dashboard1.js"></script>
+    <!--<script src="js/dashboard1.js"></script>-->
 
     <script>
         // On top

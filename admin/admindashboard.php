@@ -92,13 +92,14 @@ if (isset($_SESSION['id'])) {
     <link href="../css/all.min.css" rel="stylesheet">
 
     <!-- Bootstrap Core CSS -->
-    <link href="../assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+    <!--<link href="../assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">-->
     <!-- This page CSS -->
     <!-- chartist CSS -->
-    <link href="../assets/node_modules/morrisjs/morris.css" rel="stylesheet">
+    <!--<link href="../assets/node_modules/morrisjs/morris.css" rel="stylesheet">-->
     <!--c3 CSS -->
-    <link href="../assets/node_modules/c3-master/c3.min.css" rel="stylesheet">
+    <!--<link href="../assets/node_modules/c3-master/c3.min.css" rel="stylesheet">-->
+
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
     <!-- Dashboard 1 Page CSS -->
@@ -214,15 +215,15 @@ if (isset($_SESSION['id'])) {
                     <!-- Column -->
                     <!-- Column -->
                     <div class="col-lg-6 col-md-12">
-                        <div class="card card-body mailbox">
+                        <div class="card card-body mailbox" style="width: 100%">
                             <h5 class="card-title">Latest Update Food</h5>
                             <div class="message-center ps ps--theme_default ps--active-y" style="height: 490px" data-ps-id="a045fe3c-cb6e-028e-3a70-8d6ff0d7f6bd">
                                 <div class="table-responsive m-t-20 no-wrap">
                                     <table class="table vm no-th-brd pro-of-month">
                                         <thead>
                                             <tr>
-                                                <th class="col-6" >Food Name</th>
-                                                <th class="col-4">time update</th>
+                                                <th class="col-8">Food Name</th>
+                                                <th class="col-4">Last update</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -233,7 +234,11 @@ if (isset($_SESSION['id'])) {
                                                         <?php echo $data["title"]; ?>
                                                     </td>
                                                     <td id="timeupdate">
-                                                        <?php echo $data["update"]; ?>
+                                                        <?php if($data["update"] != ''){
+                                                            echo date('m/d/Y H:i:s', (int) ((int)$data["update"]['$date'] / 1000)); 
+                                                        }else{
+                                                            echo "";
+                                                        }?>
                                                     </td>
                                                 </tr>
                                             <?php } ?>
@@ -358,13 +363,13 @@ if (isset($_SESSION['id'])) {
     </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="mainstyle/jquery/jquery.min.js"></script>
-    <script src="mainstyle/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../mainstyle/jquery/jquery.min.js"></script>
+    <script src="../mainstyle/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script src="../assets/node_modules/jquery/jquery.min.js"></script>
+    <!--<script src="../assets/node_modules/jquery/jquery.min.js"></script>-->
     <!-- Bootstrap popper Core JavaScript -->
-    <script src="../assets/node_modules/bootstrap/js/popper.min.js"></script>
-    <script src="../assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
+    <!--<script src="../assets/node_modules/bootstrap/js/popper.min.js"></script>
+    <script src="../assets/node_modules/bootstrap/js/bootstrap.min.js"></script>-->
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="js/perfect-scrollbar.jquery.min.js"></script>
     <!--Wave Effects -->
@@ -377,13 +382,13 @@ if (isset($_SESSION['id'])) {
     <!-- This page plugins -->
     <!-- ============================================================== -->
     <!--morris JavaScript -->
-    <script src="../assets/node_modules/raphael/raphael-min.js"></script>
-    <script src="../assets/node_modules/morrisjs/morris.min.js"></script>
+    <!--<script src="../assets/node_modules/raphael/raphael-min.js"></script>
+    <script src="../assets/node_modules/morrisjs/morris.min.js"></script>-->
     <!--c3 JavaScript -->
-    <script src="../assets/node_modules/d3/d3.min.js"></script>
-    <script src="../assets/node_modules/c3-master/c3.min.js"></script>
+    <!--<script src="../assets/node_modules/d3/d3.min.js"></script>
+    <script src="../assets/node_modules/c3-master/c3.min.js"></script>-->
     <!-- Chart JS -->
-    <script src="js/dashboard1.js"></script>
+    <!--<script src="js/dashboard1.js"></script>->
 
     <script>
         // On top

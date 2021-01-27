@@ -29,7 +29,7 @@
                     if (isset($session_login_id)) {
                     ?>
                         <div class="features-icons-icon mr-3">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" style="color: rgba(0,0,0,.9); text-decoration: none; " href="dashboard.php"><?php echo $session_login_username; ?>&nbsp;&nbsp;
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" style="color: rgba(0,0,0,.9); text-decoration: none; " href="../user/dashboard.php"><?php echo $session_login_username; ?>&nbsp;&nbsp;
                                 <i class="fa fa-user text-primary" style="font-size: 1.25rem;" aria-hidden="true"></i> </a>
                             <a class="nav-link dropdown-toggle waves-effect waves-dark " href="../main/logout.php"><i class="fa fa-sign-out text-danger" style="font-size: 1.25rem;" aria-hidden="true"></i></a>
                         </div>

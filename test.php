@@ -1,5 +1,5 @@
 <?php
-    include '../main/connectAPI.php';
+    include 'main/connectAPI.php';
     $url = 'menu-detail/menu-id?username=cheasel&api_key=fe1913c8bddda7fbf1b050c92949ef887c97369bb965bc866bcbc9c15d65154e&id='.$_GET['id'];
     $resultmenu = json_decode(getAPI($url),true);
 ?>

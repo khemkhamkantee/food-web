@@ -6,8 +6,8 @@ if (isset($_SESSION['id'])) {
     $session_login_email = $_SESSION['email'];
     $session_login_username = $_SESSION['username'];
     $session_status = $_SESSION['status'];
+
     $url = 'user/user-id?username=cheasel&api_key=fe1913c8bddda7fbf1b050c92949ef887c97369bb965bc866bcbc9c15d65154e&id='.$session_login_id;
-    #$sql = "SELECT * FROM user WHERE id=$session_login_id";
     $result = json_decode(getAPI($url),true);
     if ( isset($result[0]['email']) ) {
         $email = $result[0]['email'];
@@ -15,42 +15,18 @@ if (isset($_SESSION['id'])) {
         $firstname = $result[0]["name"];
         $lastname = $result[0]["surname"];
         $age = $result[0]["age"];
+        $gender = $result[0]["gender"];     // male = 1 , female = 2
         $height = $result[0]["height"];
         $weight = $result[0]["weight"];
         $allergens = $result[0]['food_allergy'];
-        $gender = '';
     }
 }
-/*if (isset($_SESSION['id'])) {
-    $session_login_id = $_SESSION['id'];
-    $session_login_email = $_SESSION['email'];
-    $sql = "SELECT * FROM user WHERE id=$session_login_id";
-    $result = $conn->query($sql);
-    while ($row = $result->fetch_assoc()) {
-        $gender = $row["gender"];
-        $height = $row["height"];
-        $weight = $row["weight"];
-        $age = $row["age"];
-    }
-    // เลือกตาราง calories ท้งหมด
-    $sql2 = "SELECT * FROM calories WHERE user_id=$session_login_id ORDER BY time_update DESC";
-    $result2 = $conn->query($sql2);
-    // เลือกอันท้ายสุดของตาราง
-    $sql3 = "SELECT * FROM calories ORDER BY user_id=$session_login_id DESC LIMIT 1;";
-    $result3 = $conn->query($sql3);
-    while ($row3 = $result3->fetch_assoc()) {
-        $calories_last = $row3["calories"];
-    }
-}*/
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -73,28 +49,29 @@ if (isset($_SESSION['id'])) {
     <link href="../css/all.min.css" rel="stylesheet">
 
     <!-- Bootstrap Core CSS -->
-    <link href="../assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+    <!--<link href="../assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">-->
     <!-- This page CSS -->
     <!-- chartist CSS -->
-    <link href="../assets/node_modules/morrisjs/morris.css" rel="stylesheet">
+    <!--<link href="../assets/node_modules/morrisjs/morris.css" rel="stylesheet">-->
     <!--c3 CSS -->
-    <link href="../assets/node_modules/c3-master/c3.min.css" rel="stylesheet">
+    <!--<link href="../assets/node_modules/c3-master/c3.min.css" rel="stylesheet">-->
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
     <!-- Dashboard 1 Page CSS -->
     <link href="css/pages/dashboard1.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="css/colors/default.css" id="theme" rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
-    <!--<div class="preloader">
+    <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
             <p class="loader__label">Sharing Thai Food</p>
         </div>
-    </div>-->
+    </div>
     <div id="main-wrapper">
         <?php include("../function/header-user.php"); ?>
         <?php include("../function/list-user.php"); ?>
@@ -116,11 +93,11 @@ if (isset($_SESSION['id'])) {
                         </ol>
                     </div>
                 </div><!-- ../main/processCal.php -->
-                <form action="" method="POST" onsubmit="return Validate()" name="vform">
+                <!--<form action="javascript:void(0);" method="POST" class="form-horizontal form-material " onsubmit="return Validate()" name="vform">-->
                     <input name="iduser" type="hidden" value="<?php echo $session_login_id ?>">
                     <div class="row">
                         <!-- Column -->
-                        <div class="col-lg-8">
+                        <div class="col-lg-7">
                             <div class="card">
                                 <!-- Tab panes -->
                                 <div class="card-body">
@@ -129,11 +106,11 @@ if (isset($_SESSION['id'])) {
                                         <div class="col-md-12">
                                             <div class="row">
                                                 <div class="col-6">
-                                                    <input type="radio" name="gender" value="male" id="male" <?php if ($gender == "male") { ?>checked <?php } ?>>
+                                                    <input type="radio" name="gender" value="male" id="male" <?php if ($gender == "1") { ?>checked <?php } ?>> <!-- male = 1 -->
                                                     <label class="col-md-12" for="male">ชาย</label>
                                                 </div>
                                                 <div class="col-6">
-                                                    <input type="radio" name="gender" value="female" id="female" <?php if ($gender == "female") { ?>checked <?php } ?>>
+                                                    <input type="radio" name="gender" value="female" id="female" <?php if ($gender == "2") { ?>checked <?php } ?>> <!-- female = 2 -->
                                                     <label class="col-md-12" for="female">หญิง</label>
                                                 </div>
                                             </div>
@@ -142,20 +119,20 @@ if (isset($_SESSION['id'])) {
                                     <div class="form-group">
                                         <label class="col-md-12">ส่วนสูง : เซนติเมตร</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="height" value="<?php echo $height;  ?>" placeholder="200" class="form-control form-control-line">
+                                            <input type="text" id="height" value="<?php echo $height;  ?>" placeholder="200" class="form-control form-control-line">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-md-12">น้ำหนัก : กิโลกรัม</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="weight" value="<?php echo $weight;  ?>" placeholder="600" class="form-control form-control-line">
+                                            <input type="text" id="weight" value="<?php echo $weight;  ?>" placeholder="60" class="form-control form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">อายุ</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="age" value="<?php echo $age;  ?>" placeholder="20" class="form-control form-control-line">
+                                            <input type="text" id="age" value="<?php echo $age;  ?>" placeholder="20" class="form-control form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -166,7 +143,7 @@ if (isset($_SESSION['id'])) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-5">
                             <div class="card">
                                 <div class="card-body">
                                     <center>
@@ -195,10 +172,9 @@ if (isset($_SESSION['id'])) {
                             </div>
                         </div>
                     </div>
-                </form>
+                <!--</form>-->
 
-                <div class="row">
-                    <!-- column -->
+                <!--<div class="row col-5">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
@@ -216,18 +192,18 @@ if (isset($_SESSION['id'])) {
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $i = 1;
-                                            while ($row2 = $result2->fetch_assoc()) { ?>
+                                            /*$i = 1;
+                                            while ($row2 = $result2->fetch_assoc()) {*/ ?>
                                                 <tr>
-                                                    <td><?php echo $i ?></td>
+                                                    <td><?php //echo $i ?></td>
                                                     <td><?php #echo $row2["calories"]; ?></td>
                                                     <td><?php #echo $row2["time_update"]; ?></td>
                                                     <td>
-                                                        <a href="../main/delete-calculator.php?id=<?= $row2["id"]; ?>"><i class="fa fa-trash-o text-danger" style="font-size: 1.25rem;"></i></a></td>
+                                                        <a href="../main/delete-calculator.php?id=<?php //$row2["id"]; ?>"><i class="fa fa-trash-o text-danger" style="font-size: 1.25rem;"></i></a></td>
                                                     </td>
                                                 </tr>
-                                            <?php $i++;
-                                            } ?>
+                                            <?php /*$i++;
+                                            }*/ ?>
 
                                         </tbody>
                                     </table>
@@ -235,7 +211,7 @@ if (isset($_SESSION['id'])) {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
             <footer class="footer" style="padding-top:1rem !important;padding-bottom:1rem !important">
                 © 2020 Admin by sharing-thaifood.herokuapp.com
@@ -254,13 +230,13 @@ if (isset($_SESSION['id'])) {
     </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="mainstyle/jquery/jquery.min.js"></script>
-    <script src="mainstyle/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../mainstyle/jquery/jquery.min.js"></script>
+    <script src="../mainstyle/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script src="../assets/node_modules/jquery/jquery.min.js"></script>
+    <!--<script src="../assets/node_modules/jquery/jquery.min.js"></script>-->
     <!-- Bootstrap popper Core JavaScript -->
-    <script src="../assets/node_modules/bootstrap/js/popper.min.js"></script>
-    <script src="../assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
+    <!--<script src="../assets/node_modules/bootstrap/js/popper.min.js"></script>
+    <script src="../assets/node_modules/bootstrap/js/bootstrap.min.js"></script>-->
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="js/perfect-scrollbar.jquery.min.js"></script>
     <!--Wave Effects -->
@@ -273,13 +249,13 @@ if (isset($_SESSION['id'])) {
     <!-- This page plugins -->
     <!-- ============================================================== -->
     <!--morris JavaScript -->
-    <script src="../assets/node_modules/raphael/raphael-min.js"></script>
-    <script src="../assets/node_modules/morrisjs/morris.min.js"></script>
+    <!--<script src="../assets/node_modules/raphael/raphael-min.js"></script>
+    <script src="../assets/node_modules/morrisjs/morris.min.js"></script>-->
     <!--c3 JavaScript -->
-    <script src="../assets/node_modules/d3/d3.min.js"></script>
-    <script src="../assets/node_modules/c3-master/c3.min.js"></script>
+    <!--<script src="../assets/node_modules/d3/d3.min.js"></script>
+    <script src="../assets/node_modules/c3-master/c3.min.js"></script>-->
     <!-- Chart JS -->
-    <script src="js/dashboard1.js"></script>
+    <!--<script src="js/dashboard1.js"></script>-->
 
     <script>
         // On top
@@ -291,62 +267,68 @@ if (isset($_SESSION['id'])) {
         });
     </script>
 
-    <script type="text/javascript">
-        //GETTING ALL INPUT TEXT OPJECTS
-        var gender = document.forms['vform']['gender'];
-        var height = document.forms["vform"]["height"];
-        var weight = document.forms["vform"]["weight"];
-        var age = document.forms["vform"]["age"];
+    <script>
 
-        //SETTING ALL EVENT LISTENER
-        height.addEventListener("click", heightVerify);
-        weight.addEventListener("click", weightVerify);
-        age.addEventListener("click", ageVerify);
-
-        function Validate() {
-            if (height.value == "") {
-                height.style.border = "1px solid red";
-                return false;
+        function genderVerify(gender) {
+            if (gender.val() == "") {
+                gender.css({'border':'1px solid red'});
+                return 1;
             }
-            if (weight.value == "") {
-                weight.style.border = "1px solid red";
-                return false;
-            }
-            if (age.value == "") {
-                age.style.border = "1px solid red";
-                return false;
-            }
+            gender.css({'border':'1px solid #ced4da'});
+            return 0;
         }
 
-        function heightVerify() {
-            if (height.value == "") {
-                height.style.border = "";
-                return true;
+        function heightVerify(height) {
+            if (height.val() == "") {
+                height.css({'border':'1px solid red'});
+                return 1;
             }
-
+            height.css({'border':'1px solid #ced4da'});
+            return 0;
         }
 
-        function weightVerify() {
-            if (weight.value == "") {
-                weight.style.border = "";
-                return true;
+        function weightVerify(weight) {
+            if (weight.val() == "") {
+                weight.css({'border':'1px solid red'});
+                return 1;
             }
-
+            weight.css({'border':'1px solid #ced4da'});
+            return 0;
         }
 
-        function ageVerify() {
-            if (age.value == "") {
-                age.style.border = "";
-                return true;
+        function ageVerify(age) {
+            if (age.val() == "") {
+                age.css({'border':'1px solid red'});
+                return 1;
             }
-
+            age.css({'border':'1px solid #ced4da'});
+            return 0;
         }
 
         function calculate() {
-            if ( gender == 'male' ){
-                document.getElementById("bmr").innerHTML = ;
+            var gender = $('input[name=gender]:checked');
+            var height = $('#height');
+            var weight = $('#weight');
+            var age = $('#age');
+            var bmr = $('#bmr');
+            var chk = 0;
+        
+            chk += genderVerify(gender);
+            chk += heightVerify(height);
+            chk += weightVerify(weight);
+            chk += ageVerify(age);
+            if( chk != 0){
+                console.log('false');
+                return false;
             }
-            
+
+            if ( gender.val() == 'male' ){
+                var html = 66.47 + (13.75 * weight.val()) + (5.003 * height.val()) - (6.755 * age.val());
+                bmr.html(html.toFixed(2));
+            }else if ( gender.val() == 'female' ){
+                var html = 655.1 + (9.563 * weight.val()) + (1.85 * height.val()) - (4.676 * age.val());
+                bmr.html(html.toFixed(2));
+            }
         }
     </script>
 

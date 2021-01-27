@@ -56,6 +56,10 @@ $usercount = count($userdata);
     <!-- You can change the theme colors from here -->
     <link href="css/colors/default.css" id="theme" rel="stylesheet">
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
@@ -121,8 +125,7 @@ $usercount = count($userdata);
                                                         <td><?php echo $data["email"]; ?></td>
                                                         <td><?php echo date('m/d/Y H:i:s', (int) ((int)$data["update"]['$date'] / 1000)) ?></td>
                                                         <td>
-                                                            <!-- <a href="update-main-food.php?id=<?= $row["id"]; ?>"><i class="fa fa-pencil-square-o text-success mr-3" style="font-size: 1.25rem;"></a></i> -->
-                                                            <a href="../main/delete-admin-user.php?id=<?= $row["id"]; ?>"><i class="fa fa-trash-o text-danger" style="font-size: 1.25rem;"></i></a></td>
+                                                            <a href="#exampleModal" data-toggle="modal" data-id="<?php echo $data['_id'] ?>" class="open-modal"><i class="fa fa-trash-o text-danger" style="font-size: 1.25rem;"></i></a></td>
                                                         </td>
                                                     </tr>
                                                 <?php $i++;
@@ -197,7 +200,36 @@ $usercount = count($userdata);
             }, "slow");
             return false;
         });
+
+        $(document).on("click", ".open-modal", function () {
+            var userId = $(this).data('id');
+            $("#userId").val( userId );
+        });
     </script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title" id="exampleModalLabel">Delete</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <h5>You want to delete a receipe ?</h5>
+        </div>
+        <div class="modal-footer">
+            <form action="../function/delete-user.php" method="POST">
+                <input type="hidden" name="userId" id="userId" value=""/>
+                <button type="button" class="btn btn-info" data-dismiss="modal">Cancle</button>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
 
 </body>
 

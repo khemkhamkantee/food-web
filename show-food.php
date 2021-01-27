@@ -1,11 +1,12 @@
 <?php
-    include 'cache/top-cache.php';
+    //include 'cache/top-cache.php';
     session_start();
     include 'main/connectAPI.php';
     if (isset($_SESSION['id'])) {
         $session_login_id = $_SESSION['id'];
         $session_login_email = $_SESSION['email'];
         $session_login_status = $_SESSION['status'];
+        $session_login_username = $_SESSION['username'];
     }
 
     $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
@@ -14,7 +15,8 @@
     $search = isset($_GET['search']) ? $_GET['search'] : '';
     $url = 'menu-detail/ingre-name?username=cheasel&api_key=fe1913c8bddda7fbf1b050c92949ef887c97369bb965bc866bcbc9c15d65154e&name='.urlencode($search).'&skip='.$skip.'&limit='.$limit;
     $resultmenu = getAPI($url);
-
+    //$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+    //echo($actual_link);
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +57,7 @@
     
 
     <div class='search-container'>
-        <form action="/projactapi/show-food.php">
+        <form action="/food-web/show-food.php">
             <div class='search'>
                 <i class="fa fa-search"></i>
                 <input type="text" placeholder="ค้นหาจากชื่อเมนู, วัตถุดิบ" name="search">
@@ -81,7 +83,7 @@
                     <div class="menu-box">
                         <img class="card-img-left" src="<?php echo $rowmenu["image"]; ?>"  width="250" height="250" alt="Card image cap">
                         <div class='menu-name'>
-                            <h5 class="card-title"> <?php echo '<a href=/projactapi/test.php?id='. (int)$rowmenu['_id'] .'>'. $rowmenu["title"]; ?></a></h5>
+                            <h5 class="card-title"> <?php echo '<a href=/food-web/test.php?id='. (int)$rowmenu['_id'] .'>'. $rowmenu["title"]; ?></a></h5>
                             <p class="card-text">
                                 <?php 
                                     if( isset($rowmenu["description"]) ){
@@ -196,7 +198,7 @@
         });
     </script>
 
-    <?php include 'cache/bottom-cache.php'; ?>
+    <?php //include 'cache/bottom-cache.php'; ?>
 </body>
 
 </html>

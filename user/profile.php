@@ -6,7 +6,6 @@ if (isset($_SESSION['id'])) {
     $session_login_email = $_SESSION['email'];
     $session_login_username = $_SESSION['username'];
     $url = 'user/user-id?username=cheasel&api_key=fe1913c8bddda7fbf1b050c92949ef887c97369bb965bc866bcbc9c15d65154e&id='.$session_login_id;
-    #$sql = "SELECT * FROM user WHERE id=$session_login_id";
     $result = json_decode(getAPI($url),true);
     if ( isset($result[0]['email']) ) {
         $email = $result[0]['email'];
@@ -14,6 +13,7 @@ if (isset($_SESSION['id'])) {
         $firstname = $result[0]["name"];
         $lastname = $result[0]["surname"];
         $age = $result[0]["age"];
+        $gender = $result[0]["gender"];
         $height = $result[0]["height"];
         $weight = $result[0]["weight"];
         $allergens = $result[0]['food_allergy'];
@@ -49,13 +49,14 @@ if (isset($_SESSION['id'])) {
     <link href="../css/all.min.css" rel="stylesheet">
 
     <!-- Bootstrap Core CSS -->
-    <link href="../assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+    <!--<link href="../assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">-->
     <!-- This page CSS -->
     <!-- chartist CSS -->
-    <link href="../assets/node_modules/morrisjs/morris.css" rel="stylesheet">
+    <!--<link href="../assets/node_modules/morrisjs/morris.css" rel="stylesheet">-->
     <!--c3 CSS -->
-    <link href="../assets/node_modules/c3-master/c3.min.css" rel="stylesheet">
+    <!--<link href="../assets/node_modules/c3-master/c3.min.css" rel="stylesheet">-->
+
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
     <!-- Dashboard 1 Page CSS -->
@@ -129,6 +130,8 @@ if (isset($_SESSION['id'])) {
                                         <div class="col-md-12">
                                             <input name="firstname" value="<?php echo $firstname;  ?>" type="text" placeholder="<?php $firstname ?>" class="form-control form-control-line">
                                         </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label class="col-md-12">Surname</label>
                                         <div class="col-md-12">
                                             <input name="lastname" value="<?php echo $lastname;  ?>" type="text" placeholder="<?php $lastname ?>" class="form-control form-control-line">
@@ -158,26 +161,28 @@ if (isset($_SESSION['id'])) {
                                             <input name="age" value="<?php if ($age!=0) {echo $age;}  ?>" type="text" placeholder="<?php $age ?>" class="form-control form-control-line">
                                         </div>
                                     </div>
-                                    <!--<div class="form-group">
+                                    <div class="form-group">
                                         <label class="col-md-12">gender</label>
                                         <div class="col-md-12">
                                             <div class="row">
                                                 <div class="col-6">
-                                                    <input type="radio" name="gender" value="male" id="male" <?php #if ($gender == "male") { ?>checked <?php #} ?>> 
+                                                    <input type="radio" name="gender" value="1" id="male" <?php if ($gender == "1") { ?>checked <?php } ?>> 
                                                     <label class="col-md-12" for="male">ชาย</label>
                                                 </div>
                                                 <div class="col-6">
-                                                    <input type="radio" name="gender" value="female" id="female" <?php #if ($gender == "female") { ?>checked <?php #} ?>>
+                                                    <input type="radio" name="gender" value="2" id="female" <?php if ($gender == "2") { ?>checked <?php } ?>>
                                                     <label class="col-md-12" for="female">หญิง</label>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>-->
+                                    </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Height</label>
                                         <div class="col-md-12">
                                             <input name="height" value="<?php if ($height!=0) {echo $height;}  ?>" type="text" placeholder="<?php $height ?>" class="form-control form-control-line">
                                         </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label class="col-md-12">Weight</label>
                                         <div class="col-md-12">
                                             <input name="weight" value="<?php if ($weight!=0) {echo $weight;}  ?>" type="text" placeholder="<?php $weight ?>" class="form-control form-control-line">
@@ -192,14 +197,15 @@ if (isset($_SESSION['id'])) {
                                             <button onclick="addMedicalproblems()" id="get" type="button" class="btn btn-danger btn-block"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
                                         </div>
                                     </div>-->
-                                    <div class="form-group">
-                                        <label class="col-md-12">Food allergies</label>
-                                        <div class="row ml-1 mr-1">
-                                            <div class="col-md-7" id="Foodallergies">
+                                    <label class="col-md-12">Food allergies</label>
+                                    <div class="form-group col-md-12">
+                                        <!--<div class="row ml-1 mr-1">-->
+                                        <div id="Foodallergies">
                                                 <?php 
                                                     if ( count($allergens) != 0 ){
                                                         for ( $i = 0; $i < count($allergens); $i++ ){
-                                                            echo '<select name="Foodallergens['. $i .']" id="Foodallergens['. $i .']" class="form-control form-control-line">'; ?>
+                                                            echo '<div>';
+                                                            echo '<select name="Foodallergens[]" class="form-control form-control-line col-md-7">'; ?>
                                                                 <option value='' selected> Food Allergens </option>
                                                                 <option <?php if ($allergens[$i] == "Crustacean Shellfish") { ?>selected <?php } ?>>Shellfish</option>
                                                                 <option <?php if ($allergens[$i] == "Egg") { ?>selected <?php } ?>>Egg</option>
@@ -226,10 +232,12 @@ if (isset($_SESSION['id'])) {
                                                                 <option <?php if ($allergens[$i] == "Beef") { ?>selected <?php } ?>>Beef</option>
                                                                 <option <?php if ($allergens[$i] == "Chicken") { ?>selected <?php } ?>>Chicken</option>
                                                             </select>
+                                                            <?php echo '</div>'; ?>
                                                 <?php    
                                                         }
                                                     }else { ?>
-                                                        <select name="Foodallergens[0]" id="Foodallergens[0]" class="form-control form-control-line">
+                                                        <div>
+                                                        <select name="Foodallergens[]" class="form-control form-control-line col-md-7">
                                                             <option value='' selected> Food Allergens </option>
                                                             <option>Shellfish</option>
                                                             <option>Egg</option>
@@ -256,38 +264,14 @@ if (isset($_SESSION['id'])) {
                                                             <option>Beef</option>
                                                             <option>Chicken</option>
                                                         </select>
+                                                    </div>
                                                 <?php
                                                     }
                                                 ?>
                                             </div>
-                                            <button onclick="addFoodallergies()" id="get" type="button" class="btn btn-danger btn-block"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                            <a href="javascript:void(0);" class="add_allergies" title="Add field"><button type="button" class="btn btn-danger btn-block"><i class="fa fa-plus-circle" aria-hidden="true"></i></button></a>
                                         </div>
                                     </div>
-                                    <!--<div class="form-group">
-                                        <label class="col-md-12">Phone Number</label>
-                                        <div class="col-md-12">
-                                            <input name="phonenumber" value="<?php #echo $phonenumber;  ?>" medicalproblems type="text" placeholder="123 456 7890" class="form-control form-control-line">
-                                        </div>
-                                    </div>-->
-                                    <!--<div class="form-group">
-                                        <label class="col-md-12">Message</label>
-                                        <div class="col-md-12">
-                                            <textarea name="message" value="" rows="5" class="form-control form-control-line"><?php #echo $message;  ?></textarea>
-                                        </div>
-                                    </div>-->
-                                    <!--<div class="form-group">
-                                        <label class="col-sm-12">Select Country</label>
-                                        <div class="col-sm-12">
-                                            <select name="country" class="form-control form-control-line">
-                                                <option selected>OSelect Country</option>
-                                                <option <?php #if ($country == "London") { ?>selected <?php #} ?>>London</option>
-                                                <option <?php #if ($country == "India") { ?>selected <?php #} ?>>India</option>
-                                                <option <?php #if ($country == "Usa") { ?>selected <?php #} ?>>Usa</option>
-                                                <option <?php #if ($country == "Canada") { ?>selected <?php #} ?>>Canada</option>
-                                                <option <?php #if ($country == "Thailand") { ?>selected <?php #} ?>>Thailand</option>
-                                            </select>
-                                        </div>
-                                    </div>-->
                                     <div class="form-group">
                                         <div class="col-sm-12">
                                             <button type="submit" name="submit" value="update" class="btn btn-success">Update</button>
@@ -313,13 +297,13 @@ if (isset($_SESSION['id'])) {
     </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="mainstyle/jquery/jquery.min.js"></script>
-    <script src="mainstyle/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../mainstyle/jquery/jquery.min.js"></script>
+    <script src="../mainstyle/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script src="../assets/node_modules/jquery/jquery.min.js"></script>
+    <!--<script src="../assets/node_modules/jquery/jquery.min.js"></script>-->
     <!-- Bootstrap popper Core JavaScript -->
-    <script src="../assets/node_modules/bootstrap/js/popper.min.js"></script>
-    <script src="../assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
+    <!--<script src="../assets/node_modules/bootstrap/js/popper.min.js"></script>
+    <script src="../assets/node_modules/bootstrap/js/bootstrap.min.js"></script>-->
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="js/perfect-scrollbar.jquery.min.js"></script>
     <!--Wave Effects -->
@@ -332,16 +316,16 @@ if (isset($_SESSION['id'])) {
     <!-- This page plugins -->
     <!-- ============================================================== -->
     <!--morris JavaScript -->
-    <script src="../assets/node_modules/raphael/raphael-min.js"></script>
-    <script src="../assets/node_modules/morrisjs/morris.min.js"></script>
+    <!--<script src="../assets/node_modules/raphael/raphael-min.js"></script>
+    <script src="../assets/node_modules/morrisjs/morris.min.js"></script>-->
     <!--c3 JavaScript -->
-    <script src="../assets/node_modules/d3/d3.min.js"></script>
-    <script src="../assets/node_modules/c3-master/c3.min.js"></script>
+    <!--<script src="../assets/node_modules/d3/d3.min.js"></script>
+    <script src="../assets/node_modules/c3-master/c3.min.js"></script>-->
     <!-- Chart JS -->
-    <script src="js/dashboard1.js"></script>
+    <!--<script src="js/dashboard1.js"></script>-->
 
     <script>
-        var numAllergens = 0;
+        /*<var numAllergens = 0;*/
 
         function readURL(input) {
             if (input.files && input.files[0]) {
@@ -355,7 +339,7 @@ if (isset($_SESSION['id'])) {
             }
         }
 
-        function addMedicalproblems() {
+        /*function addMedicalproblems() {
             var Medipro = '';
             Medipro += '<input name="medicalproblems" type="text" placeholder="Medical problems" class="form-control form-control-line">';
             $("#Medicalproblems").append(Medipro);
@@ -392,11 +376,38 @@ if (isset($_SESSION['id'])) {
             Foodaller += '<option> Chicken </option>';
             Foodaller += '</select>';
             $("#Foodallergies").append(Foodaller);
-        }
+        }*/
+
+        $(document).ready(function(){
+            //var maxField = 10; //Input fields increment limitation
+            var addAllergy = $('.add_allergies'); //Add button selector
+            //var wrapper = $('.field_wrapper'); //Input field wrapper
+            var Allergy_wrapper = $('#Foodallergies'); //Input field wrapper
+            
+            var fieldHTML = '<div><select name="Foodallergens[]" class="form-control form-control-line col-md-7"><option value="" selected> Food Allergens </option><option>Shellfish</option><option>Egg</option><option>Fish</option><option>Milk</option><option>Peanut</option><option>Soy</option><option>Tree Nuts</option><option>Wheat</option><option>Gluten</option><option>Buckwheat</option><option>Celery</option><option>Lupin</option><option>Molluscan Shellfish</option><option>Mustard</option><option>Sesame</option><option>Sulfites</option><option>Bee Pollen</option><option>Royal Jelly</option><option>Mango</option><option>Peach</option><option>Pork</option><option>Tomato</option><option>Beef</option><option>Chicken</option></select><a href="javascript:void(0);" class="remove_allergy col-md-1"><i class="fa fa-minus-circle" aria-hidden="true"></i></a></div>'; //New input field html
+            //var x = 1; //Initial field counter is 1
+                                                  
+            //Once add button is clicked
+            $(addAllergy).click(function(){
+                //Check maximum number of input fields
+                //if(x < maxField){ 
+                //x++; //Increment field counter
+                $(Allergy_wrapper).append(fieldHTML); //Add field html
+                //}
+            });
+            
+            //Once remove button is clicked
+            $(Allergy_wrapper).on('click', '.remove_allergy', function(e){
+                e.preventDefault();
+                $(this).parent('div').remove(); //Remove field html
+                //x--; //Decrement field counter
+            });
+        });
 
         $("#news_filename").change(function() {
             readURL(this);
         });
+
         // On top
         $("a[href='#top']").click(function() {
             $("html, body").animate({

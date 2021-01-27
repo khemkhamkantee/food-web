@@ -1,7 +1,11 @@
+<?php
+    //$username = isset($_SESSION['username']) ? $session_login_username : '';
+    $username = $_SESSION['username'];
+?>
 <header class="topbar">
     <nav class="navbar top-navbar navbar-expand-md navbar-light">
         <div class="navbar-header">
-            <a class="navbar-brand" href="../index.php">
+            <a class="navbar-brand" href="../show-food.php">
                 <!-- Logo icon --><b>
                     <!-- Dark Logo icon -->
                     <img src="../assets/images/logo-icon-api.png" alt="homepage" class="dark-logo" />
@@ -29,7 +33,7 @@
                     if (isset($session_login_id)) {
                     ?>
                         <div class="features-icons-icon mr-3">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" style="color: rgba(0,0,0,.9); text-decoration: none; " href="admindashboard.php"><?php echo $session_login_username; ?>&nbsp;&nbsp;
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" style="color: rgba(0,0,0,.9); text-decoration: none; " href="../admin/admindashboard.php"><?php echo $username; ?>&nbsp;&nbsp;
                                 <i class="fa fa-user text-primary" style="font-size: 1.25rem;" aria-hidden="true"></i> </a>
                             <a class="nav-link dropdown-toggle waves-effect waves-dark " href="../main/logout.php"><i class="fa fa-sign-out text-danger" style="font-size: 1.25rem;" aria-hidden="true"></i></a>
                         </div>

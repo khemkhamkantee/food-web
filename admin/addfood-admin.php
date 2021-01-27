@@ -93,7 +93,7 @@ $resultmenu = json_decode(getAPI($url),true);
                         </ol>
                     </div>
                     <div class="col-md-7 align-self-center">
-                        <a href="addfood-admin2.php" class="btn waves-effect waves-light btn btn-info pull-right hidden-sm-down">Add Food <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                        <a href="../main/add-menu.php" class="btn waves-effect waves-light btn btn-info pull-right hidden-sm-down">Add Food <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 <div class="row">

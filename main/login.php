@@ -1,5 +1,5 @@
 <?php
-include '../main/connectAPI.php';
+include 'connectAPI.php';
 
 $email = $_POST['email'];
 $password = $_POST['password'];

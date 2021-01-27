@@ -12,7 +12,7 @@ $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 $limit = 20;
 $skip = ($page - 1) * $limit;
 $search = '';
-$url = 'menu-detail/ingre-name?username=cheasel&api_key=fe1913c8bddda7fbf1b050c92949ef887c97369bb965bc866bcbc9c15d65154e&name=&skip='.$skip.'&limit='.$limit;
+$url = 'menu-detail/limit-menu?username=cheasel&api_key=fe1913c8bddda7fbf1b050c92949ef887c97369bb965bc866bcbc9c15d65154e&name=&skip='.$skip.'&limit='.$limit;
 $resultmenu = json_decode(getAPI($url),true);
 ?>
 
@@ -21,7 +21,6 @@ $resultmenu = json_decode(getAPI($url),true);
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -59,7 +58,39 @@ $resultmenu = json_decode(getAPI($url),true);
     <link href="css/colors/default.css" id="theme" rel="stylesheet">
 
     <link href="../css/show-food.css" rel="stylesheet">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="mainstyle/jquery/jquery.min.js"></script>
+    <script src="mainstyle/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../assets/node_modules/jquery/jquery.min.js"></script>
+    <!-- Bootstrap popper Core JavaScript -->
+    <script src="../assets/node_modules/bootstrap/js/popper.min.js"></script>
+    <script src="../assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="js/perfect-scrollbar.jquery.min.js"></script>
+    <!--Wave Effects -->
+    <script src="js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="js/custom.min.js"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugins -->
+    <!-- ============================================================== -->
+    <!--morris JavaScript -->
+    <script src="../assets/node_modules/raphael/raphael-min.js"></script>
+    <script src="../assets/node_modules/morrisjs/morris.min.js"></script>
+    <!--c3 JavaScript -->
+    <script src="../assets/node_modules/d3/d3.min.js"></script>
+    <script src="../assets/node_modules/c3-master/c3.min.js"></script>
+    <!-- Chart JS -->
+    <script src="js/dashboard1.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
@@ -83,11 +114,14 @@ $resultmenu = json_decode(getAPI($url),true);
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
-                        <h3 class="text-themecolor">Receipe</h3>
+                        <h3 class="text-themecolor">Recipe</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Receipe</li>
+                            <li class="breadcrumb-item active">All Recipe</li>
                         </ol>
+                    </div>
+                    <div class="col-md-7 align-self-center">
+                        <a href="../main/add-menu.php" class="btn waves-effect waves-light btn btn-info pull-right hidden-sm-down">Add Food <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 <div class="row">
@@ -95,8 +129,8 @@ $resultmenu = json_decode(getAPI($url),true);
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Receipe</h4>
-                                <h6 class="card-subtitle">Add Receipe</h6>
+                                <h4 class="card-title">Recipe</h4>
+                                <h6 class="card-subtitle">Manage Recipe</h6>
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
@@ -117,10 +151,10 @@ $resultmenu = json_decode(getAPI($url),true);
                                                         <h6><?php echo $row["title"]; ?></h6>
                                                     </td>
                                                     <td><?php echo date('m/d/Y H:i:s', (int) ((int)$row["date_add"]['$date'] / 1000)); ?></td>
-                                                    <td>
-                                                        <a href="../show-food.php?id=<?= $row["id"]; ?>"><i class="fa fa-eye text-success mr-3" style="font-size: 1.25rem;"></a></i>
-                                                        <a href="update-main-food.php?id=<?= $row["id"]; ?>"><i class="fa fa-pencil-square-o text-success mr-3" style="font-size: 1.25rem;"></a></i>
-                                                        <a href="../main/delete-adminfood.php?id=<?= $row["id"]; ?>"><i class="fa fa-trash-o text-danger" style="font-size: 1.25rem;"></i></a></td>
+                                                        <td>
+                                                            <a href="<?php echo '../main/edit-food.php?id='. $row["_id"] ?>"><i class="fa fa-pencil-square-o text-success mr-3" style="font-size: 1.25rem;"></i></a>
+                                                            <a href="#exampleModal" data-toggle="modal" data-id="<?php echo $row["_id"] ?>" class="open-modal"><i class="fa fa-trash-o text-danger" style="font-size: 1.25rem;"></i></a>
+                                                        </td> 
                                                     </td>
                                                 </tr>
                                                 <?php $i++;
@@ -160,34 +194,6 @@ $resultmenu = json_decode(getAPI($url),true);
         </a>
     </div>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="mainstyle/jquery/jquery.min.js"></script>
-    <script src="mainstyle/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <script src="../assets/node_modules/jquery/jquery.min.js"></script>
-    <!-- Bootstrap popper Core JavaScript -->
-    <script src="../assets/node_modules/bootstrap/js/popper.min.js"></script>
-    <script src="../assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="js/perfect-scrollbar.jquery.min.js"></script>
-    <!--Wave Effects -->
-    <script src="js/waves.js"></script>
-    <!--Menu sidebar -->
-    <script src="js/sidebarmenu.js"></script>
-    <!--Custom JavaScript -->
-    <script src="js/custom.min.js"></script>
-    <!-- ============================================================== -->
-    <!-- This page plugins -->
-    <!-- ============================================================== -->
-    <!--morris JavaScript -->
-    <script src="../assets/node_modules/raphael/raphael-min.js"></script>
-    <script src="../assets/node_modules/morrisjs/morris.min.js"></script>
-    <!--c3 JavaScript -->
-    <script src="../assets/node_modules/d3/d3.min.js"></script>
-    <script src="../assets/node_modules/c3-master/c3.min.js"></script>
-    <!-- Chart JS -->
-    <script src="js/dashboard1.js"></script>
-
     <script>
         // On top
         $("a[href='#top']").click(function() {
@@ -196,7 +202,36 @@ $resultmenu = json_decode(getAPI($url),true);
             }, "slow");
             return false;
         });
+
+        $(document).on("click", ".open-modal", function () {
+            var foodId = $(this).data('id');
+            $("#foodId").val( foodId );
+        });
     </script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title" id="exampleModalLabel">Delete</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <h5>You want to delete a receipe ?</h5>
+        </div>
+        <div class="modal-footer">
+            <form action="../function/delete-food.php" method="POST">
+                <input type="hidden" name="foodId" id="foodId" value=""/>
+                <button type="button" class="btn btn-info" data-dismiss="modal">Cancle</button>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
 
 </body>
 
