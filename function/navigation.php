@@ -32,10 +32,10 @@
     <div class='menu-bar'>
         <ul>
             <li>
-                <a href='/food-web/show-food.php'> สูตรอาหาร </a>
+                <a href='index.php'> สูตรอาหาร </a>
             </li>
             <li>
-                <a href='/food-web/api-doc.php'> API </a>  
+                <a href='/projectapi/api-doc.php'> API </a>  
             </li>
         </ul> 
     </div>
