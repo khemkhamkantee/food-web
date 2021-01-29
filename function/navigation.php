@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light bg-light static-top">
+<nav class="navbar navbar-light static-top">
     <div class="top-nav">
         <ul>
             <li>

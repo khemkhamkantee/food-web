@@ -1,7 +1,7 @@
 <?php 
     function getAPI($url){
         //$baseurl = 'http://139.59.99.217/api/';
-        $baseurl = 'http://127.0.0.1:5000/api/';
+        $baseurl = 'http://139.59.99.217/api/';
         // create & initialize a curl session
         $curl = curl_init();
 
@@ -23,7 +23,7 @@
 
     function postAPI($url, $data){
         #$baseurl = 'http://139.59.99.217/api/';
-        $baseurl = 'http://127.0.0.1:5000/api/';
+        $baseurl = 'http://139.59.99.217/api/';
         // create & initialize a curl session
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_POST, 1);
@@ -48,7 +48,7 @@
 
     function deleteAPI($url){
         #$baseurl = 'http://139.59.99.217/api/';
-        $baseurl = 'http://127.0.0.1:5000/api/';
+        $baseurl = 'http://139.59.99.217/api/';
 
 		$ch = curl_init();                                                                      
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE"); 

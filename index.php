@@ -49,6 +49,7 @@
     <link href="css/show-food.css" rel="stylesheet">
     <style>
         body {
+         
             background-image: url(img/bg/flat-lay-2583213.jpg);
             height: 100%;
             background-position: center;
