@@ -9,6 +9,8 @@
     $search = isset($_GET['search']) ? $_GET['search'] : '';
     $url2 = 'menu-detail/ingre-name?username=cheasel&api_key=fe1913c8bddda7fbf1b050c92949ef887c97369bb965bc866bcbc9c15d65154e&name='.urlencode($search).'&skip='.$skip.'&limit='.$limit;
     $resultmenu2 = getAPI($url2);
+
+
     
 ?>
 
@@ -41,7 +43,10 @@
 
     <link href="css/show-food.css" rel="stylesheet">
 
-    
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+
     <style>
         body {
             background-image: url(img/bg/flat-lay-2583213.jpg);
@@ -129,6 +134,24 @@
                                 ?>
                                 <br>
                                 <h5>ผู้เขียน</h5><label class="pl-3" for="">Exsample.@gmail.com</label>
+                                <br>
+                                <h5 class="">โภชนาการ</h5>
+                                <p class="ml-4">คาร์โบไฮเดรต: 10 g ให้พลังงาน <?php echo 10*4 ?> kcal</p>
+                                <p class="ml-4">ไขมัน: 10 g ให้พลังงาน <?php echo 10*9 ?> kcal</p>
+                                <p class="ml-4">โปรตีน: 10 g ให้พลังงาน <?php echo 10*4 ?> kcal</p>
+                                <div class="card shadow mb-4">
+                                    <div class="card-body">
+                                        <div class="chart-bar">
+                                            <canvas id="myBarChart"></canvas>
+                                        </div>
+                                        <hr>
+                                        <p> คาร์โบไฮเดรต 1 กรัม ให้พลังงาน 4 กิโลแคลอรี</p>
+                                        <p> ไขมัน 1 กรัม ให้พลังงาน 9 กิโลแคลอรี</p>
+                                        <p> โปรตีน 1 กรัม ให้พลังงาน 4 กิโลแคลอรี</p>
+                                        <p></p>
+                                        <p></p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -136,7 +159,7 @@
             </div>
 
             <div class="col-4">
-                <div class="card" style="box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);">
+                <div class="card" style="box-shadow: 5px 4px 5px rgba(0, 0, 0, 0.6);">
                     <div class="card-body">
                         <center>
                             <h5 class="card-title">อาหารแนะนำ</h5>
@@ -163,13 +186,17 @@
         </div>
     </section>
 
-  
+
     <!-- Footer -->
     <?php include("function/footer.php"); ?>
 
     <!-- Bootstrap core JavaScript -->
     <script src="mainstyle/jquery/jquery.min.js"></script>
     <script src="mainstyle/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="assets/js/chart.js/Chart.min.js"></script>
+    <script src="assets/js/chart.js/chart-bar-demo.js"></script>
 
     <script>
         // On top
