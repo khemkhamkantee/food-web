@@ -67,7 +67,7 @@
 
 
     <div class='search-container'>
-        <form action="/projactapi/show-food.php">
+        <form action="/projectapi/index.php">
             <div class='search'>
                 <i class="fa fa-search"></i>
                 <input type="text" placeholder="ค้นหาจากชื่อเมนู, วัตถุดิบ" name="search">
@@ -117,10 +117,10 @@
             <?php
                 }; 
             ?>
-            <?php include('function/pagination.php'); ?>
         </div>
     </section>
 
+    <?php include('function/pagination.php'); ?>
 
 
     <!-- BMR Calculator , Congenital disease , Food allergies -->
