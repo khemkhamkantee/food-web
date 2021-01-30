@@ -6,6 +6,7 @@
         $session_login_id = $_SESSION['id'];
         $session_login_email = $_SESSION['email'];
         $session_login_status = $_SESSION['status'];
+        $session_login_username = $_SESSION['username'];
     }
 
     $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;

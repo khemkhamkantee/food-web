@@ -1,5 +1,13 @@
 <?php
-    include 'main/connectAPI.php';
+  session_start();
+  include 'main/connectAPI.php';
+  if (isset($_SESSION['id'])) {
+    $session_login_id = $_SESSION['id'];
+    $session_login_email = $_SESSION['email'];
+    $session_login_status = $_SESSION['status'];
+    $session_login_username = $_SESSION['username'];
+  }
+
     $url = 'menu-detail/menu-id?username=cheasel&api_key=fe1913c8bddda7fbf1b050c92949ef887c97369bb965bc866bcbc9c15d65154e&id='.$_GET['id'];
     $resultmenu = json_decode(getAPI($url),true);
 
@@ -9,9 +17,6 @@
     $search = isset($_GET['search']) ? $_GET['search'] : '';
     $url2 = 'menu-detail/ingre-name?username=cheasel&api_key=fe1913c8bddda7fbf1b050c92949ef887c97369bb965bc866bcbc9c15d65154e&name='.urlencode($search).'&skip='.$skip.'&limit='.$limit;
     $resultmenu2 = getAPI($url2);
-
-
-    
 ?>
 
 <!DOCTYPE html>
@@ -165,7 +170,8 @@
                                 <h5>ผู้เขียน</h5>
                                 <div class="col pl-3">Exsample.@gmail.com</div>
                                 <h5>เอกสารอ้างอิง</h5>
-                                <div class="col pl-3">https://www.wongnai.com/recipes/ugc/7b9ac2dcbf0d4a64b8bda6539ae75ba5</div>
+                                <div class="col pl-3">
+                                    https://www.wongnai.com/recipes/ugc/7b9ac2dcbf0d4a64b8bda6539ae75ba5</div>
                                 <!-- <br>
                                 <h5 class="">โภชนาการ</h5>
                                 <p class="ml-4">คาร์โบไฮเดรต: 10 g ให้พลังงาน <?php echo 10*4 ?> kcal</p>
