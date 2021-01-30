@@ -43,8 +43,14 @@
 
     <link href="css/show-food.css" rel="stylesheet">
 
-    <!-- Custom styles for this template-->
+    <!-- Chart Bar-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+
+    <!-- Chart Pei -->
+    <link href="admin/assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="admin/assets/node_modules/c3-master/c3.min.css" rel="stylesheet">
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
 
 
     <style>
@@ -85,8 +91,31 @@
                                             style="box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);"
                                             src="<?php echo $resultmenu[0]['image']; ?>" width="190" height="190"
                                             alt="Card image cap">
+                                        <br>
+                                        <h5 class="card-title m-b-0 mt-3 align-self-center">คุณค่าอาหาร</h5>
                                     </center>
+
+                                    <div id="visitor" style="height:260px; width:100%;"></div>
+                                    <ul class="list-inline m-t-30 ml-4 font-12">
+                                        <li><i class="fa fa-circle text-danger"></i> แคลอรี่</li>
+                                        <li><i class="fa fa-circle" style="color: #ff5722;"></i> คาร์โบไฮเดรต</li>
+                                        <li><i class="fa fa-circle text-warning"></i> คอเลสเตอรอล</li>
+                                        <li><i class="fa fa-circle text-success"></i> ไขมัน</li>
+                                        <li><i class="fa fa-circle text-primary"></i> โปรตีน</li>
+                                    </ul>
                                 </div>
+                                <!-- <div class="card mt-2" style="box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);">
+                                    <div class="d-flex m-b-30 no-block">
+                                        <h5 class="card-title m-b-0 align-self-center">คุณค่าอาหาร</h5>
+                                    </div>
+                                    <h5 class="card-title m-b-0 align-self-center">คุณค่าอาหาร</h5>
+                                    <div id="visitor" style="height:260px; width:100%;"></div>
+                                    <ul class="list-inline m-t-30 text-center font-12">
+                                        <li><i class="fa fa-circle text-purple"></i> Tablet</li>
+                                        <li><i class="fa fa-circle text-success"></i> Desktops</li>
+                                        <li><i class="fa fa-circle text-info"></i> Mobile</li>
+                                    </ul>
+                                </div> -->
                             </div>
                             <div class="col-8">
                                 <h5 class="card-title"><?php echo $resultmenu[0]['title']; ?></h5>
@@ -194,9 +223,15 @@
     <script src="mainstyle/jquery/jquery.min.js"></script>
     <script src="mainstyle/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Page level plugins -->
+    <!-- Chart Bar -->
     <script src="assets/js/chart.js/Chart.min.js"></script>
     <script src="assets/js/chart.js/chart-bar-demo.js"></script>
+
+    <!--Chart Pei -->
+    <script src="admin/assets/node_modules/jquery/jquery.min.js"></script>
+    <script src="admin/assets/node_modules/d3/d3.min.js"></script>
+    <script src="admin/assets/node_modules/c3-master/c3.min.js"></script>
+    <script src="admin/js/dashboard1.js"></script>
 
     <script>
         // On top

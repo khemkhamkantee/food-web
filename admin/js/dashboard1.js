@@ -14,10 +14,11 @@ $(function() {
         bindto: '#visitor',
         data: {
             columns: [
-                ['Other', 30],
-                ['Desktop', 10],
-                ['Tablet', 40],
-                ['Mobile', 50],
+                ['แคลอรี่', 20],
+                ['คาร์โบไฮเดรต', 20],
+                ['คอเลสเตอรอล', 20],
+                ['ไขมัน', 20],
+                ['โปรตีน', 20],
             ],
 
             type: 'donut',
@@ -29,7 +30,7 @@ $(function() {
             label: {
                 show: false
             },
-            title: "Visits",
+            title: "คุณค่าอาหาร",
             width: 20,
 
         },
@@ -40,7 +41,7 @@ $(function() {
                 //or hide: ['data1', 'data2']
         },
         color: {
-            pattern: ['#eceff1', '#24d2b5', '#6772e5', '#20aee3']
+            pattern: ['#dc3545', '#ff5722', '#ffc107', '#28a745', '#007bff']
         }
     });
     // ============================================================== 
