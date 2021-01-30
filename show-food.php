@@ -162,8 +162,11 @@
                                     echo '</div>';
                                 ?>
                                 <br>
-                                <h5>ผู้เขียน</h5><label class="pl-3" for="">Exsample.@gmail.com</label>
-                                <br>
+                                <h5>ผู้เขียน</h5>
+                                <div class="col pl-3">Exsample.@gmail.com</div>
+                                <h5>เอกสารอ้างอิง</h5>
+                                <div class="col pl-3">https://www.wongnai.com/recipes/ugc/7b9ac2dcbf0d4a64b8bda6539ae75ba5</div>
+                                <!-- <br>
                                 <h5 class="">โภชนาการ</h5>
                                 <p class="ml-4">คาร์โบไฮเดรต: 10 g ให้พลังงาน <?php echo 10*4 ?> kcal</p>
                                 <p class="ml-4">ไขมัน: 10 g ให้พลังงาน <?php echo 10*9 ?> kcal</p>
@@ -180,7 +183,7 @@
                                         <p></p>
                                         <p></p>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
