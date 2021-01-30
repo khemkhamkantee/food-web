@@ -197,7 +197,7 @@
             </div>
 
             <div class="col-4">
-                <div class="card" style="box-shadow: 5px 4px 5px rgba(0, 0, 0, 0.6);">
+                <div class="card" style="box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);">
                     <div class="card-body">
                         <center>
                             <h5 class="card-title">อาหารแนะนำ</h5>
