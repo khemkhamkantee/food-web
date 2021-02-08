@@ -48,9 +48,13 @@
     <link href="css/all.min.css" rel="stylesheet">
 
     <link href="css/show-food.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    
     <style>
         body {
-         
+
             background-image: url(img/bg/flat-lay-2583213.jpg);
             height: 100%;
             background-position: center;
@@ -71,7 +75,7 @@
         <form action="/projectapi/index.php">
             <div class='search'>
                 <i class="fa fa-search"></i>
-                <input type="text" placeholder="ค้นหาจากชื่อเมนู, วัตถุดิบ" name="search">
+                <input type="text" placeholder="ค้นหาจากชื่อเมนู, วัตถุดิบ" name="search" id="tags">
                 <input type="submit" value="ค้นหา" name="sumbmit">
             </div>
         </form>
@@ -93,17 +97,18 @@
             <?php
                 foreach ( json_decode($resultmenu,true) as $rowmenu){
             ?>
-              <a href=" <?php echo '/projectapi/show-food.php?id='. (int)$rowmenu['_id'];?>">
-                  <div id="wb_element_instance2" class="wb_element hvr-grow menu-box mb-4">
-                      <center>
-                          <img class="card-img-left rounded-circle mt-3" src="<?php echo $rowmenu["image"]; ?>" width="250"
-                              height="250" alt="Card image cap">
-                      </center>
-                      <div class='menu-name'>
-                          <h5 class="card-title name-title text-center">
-                              <?php echo $rowmenu["title"]; ?></a>
-                          </h5>
-                          <!-- <p class="card-text detail-description">
+            <a href=" <?php echo '/projectapi/show-food.php?id='. (int)$rowmenu['_id'];?>">
+                <div id="wb_element_instance2" class="wb_element hvr-grow menu-box mb-4">
+                    <center>
+                        <img class="card-img-left rounded-circle mt-3" src="<?php echo $rowmenu["image"]; ?>"
+                            width="250" height="250" alt="Card image cap">
+                    </center>
+                    <div class='menu-name'>
+                        <label class="card-title name-title text-center">
+                            <?php echo $rowmenu["title"]; ?>
+            </a>
+            </label>
+            <!-- <p class="card-text detail-description">
                               <?php 
                                           if( isset($rowmenu["description"]) ){
                                               echo $rowmenu["description"];
@@ -112,10 +117,10 @@
                                           }
                                       ?>
                           </p> -->
-                      </div>
-                  </div>
-              </a>
-            <?php
+        </div>
+        </div>
+        </a>
+        <?php
                 }; 
             ?>
         </div>
@@ -157,6 +162,45 @@
     <!-- Bootstrap core JavaScript -->
     <script src="mainstyle/jquery/jquery.min.js"></script>
     <script src="mainstyle/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="assets/js/autocomplete.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        // Autocomplete
+        $(function () {
+            var availableTags = [
+                "ข้าวกระเพราหมู",
+                "กระเพราหมู",
+                "ข้าวกระเพราหมู ไก่",
+                "ข้าวกระเพราหมู เนื้อ",
+                "หมูกระเทียม",
+                "ก๋วยเตี๋ยว",
+                "ไอติม",
+                "หดักอๆไพส)ฉ็ญ",
+                "11111",
+                "121212",
+                "232323",
+                "123456789",
+                "4532",
+                "123",
+                "212",
+                "147",
+                "191",
+                "132",
+                "1756",
+                "127888",
+                "19999",
+                "1997"
+            ];
+            $("#tags").autocomplete({
+                source: availableTags
+            });
+        });
+    </script>
 
     <script>
         // On top
